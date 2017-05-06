@@ -1,7 +1,7 @@
 import Plot from '../models/plot'
 import { Bonus } from '../models/enums/bonus'
 
-export const plotItems = {
+export const PlotItems: object = {
     'wait': new Plot(
         'Wait',
          'Wait in line.',

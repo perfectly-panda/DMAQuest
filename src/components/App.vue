@@ -24,3 +24,10 @@ export default class App extends Vue {
   }
 }
 </script>
+
+<style>
+  h1 {
+    font-family: 'Open Sans', sans-serif;
+    padding-left: 10px; 
+  }
+</style>

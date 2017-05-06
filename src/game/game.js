@@ -1,3 +1,5 @@
+import { PlotItems } from './data/plot';
+import { Tabs } from './data/tabs';
 var Game = (function () {
     function Game() {
         this.loaded = false;
@@ -6,6 +8,9 @@ var Game = (function () {
         this.load = function () {
             // TODO stuff
             console.log('loading game');
+            this.plot = PlotItems;
+            this.tabs = Tabs;
+            this.tabs.story.visible = true;
             this.loaded = true;
         };
         this.game = function () {
@@ -42,10 +47,10 @@ var Game = (function () {
             }
         };
         this.updateResourceValues = function () {
-            console.log('update resource values');
+            // console.log('update resource values')
         };
         this.updateResourceCalculations = function () {
-            console.log('update resource calculations');
+            // console.log('update resource calculations')
         };
     }
     return Game;

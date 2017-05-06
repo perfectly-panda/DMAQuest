@@ -1,13 +1,21 @@
+import Plot, { PlotItems } from './data/plot'
+import Tab, { Tabs } from './data/tabs'
+
 export default class Game {
     loaded: boolean = false;
     running: boolean = false;
     tickCount: number = 0;
 
+    plot: object
+
     public load = function () {
         // TODO stuff
         console.log('loading game')
+        this.plot = PlotItems
+        this.tabs = Tabs
 
-       this.loaded = true; 
+        this.tabs.story.visible = true
+        this.loaded = true; 
     }
 
     public game = function () {
@@ -52,10 +60,10 @@ export default class Game {
     }
 
     updateResourceValues = function () {
-        console.log('update resource values')
+        // console.log('update resource values')
     }
 
     updateResourceCalculations = function () {
-        console.log('update resource calculations')
+        // console.log('update resource calculations')
     }
 }
