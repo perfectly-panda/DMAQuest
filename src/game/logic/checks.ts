@@ -1,3 +1,4 @@
+
 export default class Checks {
     public static available = function(game: any) {
         for (var item in game.plot) {

@@ -2,24 +2,18 @@ import { PlotItems } from './data/plot';
 import { Tabs } from './data/tabs';
 import { Story } from './data/story';
 import { ResourceItems } from './data/resources';
-import Checks from './checks';
+import Checks from './logic/checks';
+import PlayerActions from './logic/playerActions';
 var Game = (function () {
     function Game() {
-        this.loaded = false;
-        this.running = false;
-        this.tickCount = 0;
+        this.actions = new PlayerActions();
         this.plot = PlotItems;
         this.tabs = Tabs;
         this.story = Story;
         this.resources = ResourceItems;
-        this.load = function () {
-            // TODO check for saved data
-            this.tabs.story.visible = true;
-            this.plot.wait.visible = true;
-            this.loaded = true;
-        };
-        this.game = function () {
-            if (this.loaded) {
+        this.initalize = function () {
+            this._load();
+            if (this._loaded) {
                 console.log('starting game');
                 this.start();
             }
@@ -28,40 +22,41 @@ var Game = (function () {
             }
         };
         this.start = function () {
-            this.running = true;
-            this.run();
+            this._running = true;
+            this._run();
         };
         this.stop = function () {
-            this.running = false;
+            this._running = false;
         };
         this.isRunning = function () {
-            return this.running;
+            return this._running;
         };
-        this.run = function () {
-            if (this.running) {
+        this._loaded = false;
+        this._running = false;
+        this._tickCount = 0;
+        this._load = function () {
+            // TODO check for saved data
+            this._loaded = true;
+        };
+        this._run = function () {
+            if (this._running) {
                 var that = this;
                 setTimeout(function () {
-                    that.tickCount++;
-                    that.updateResourceValues();
-                    if (that.tickCount % 2 === 0) {
+                    that._tickCount++;
+                    //that.updateResourceValues()
+                    if (that._tickCount % 2 === 0) {
                         Checks.purchasable(that);
                     }
-                    if (that.tickCount % 7 === 0) {
+                    if (that._tickCount % 7 === 0) {
                         Checks.available(that);
                     }
-                    if (that.tickCount % 10 === 0) {
-                        that.updateResourceCalculations();
-                        that.tickCount = 0;
+                    if (that._tickCount % 10 === 0) {
+                        //that.updateResourceCalculations()
+                        that._tickCount = 0;
                     }
-                    that.run();
+                    that._run();
                 }, 200);
             }
-        };
-        this.updateResourceValues = function () {
-            // console.log('update resource values')
-        };
-        this.updateResourceCalculations = function () {
-            // console.log('update resource calculations')
         };
     }
     return Game;

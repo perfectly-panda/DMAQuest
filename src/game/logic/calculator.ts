@@ -1,6 +1,6 @@
-import { Bonus } from './models/enums/bonus'
+import { Bonus } from '../models/enums/bonus'
 
-export default class calculator {
+export default class Calculator {
 
     public static bonusFunc = function (resources: object, resource: string, type: Bonus, amount: number) {
         switch(type){

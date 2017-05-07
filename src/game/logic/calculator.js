@@ -1,10 +1,10 @@
-var calculator = (function () {
-    function calculator() {
+var Calculator = (function () {
+    function Calculator() {
     }
-    return calculator;
+    return Calculator;
 }());
-export default calculator;
-calculator.bonusFunc = function (resources, resource, type, amount) {
+export default Calculator;
+Calculator.bonusFunc = function (resources, resource, type, amount) {
     switch (type) {
         case 0 /* add */:
             resources[resource].value += amount;
@@ -12,7 +12,7 @@ calculator.bonusFunc = function (resources, resource, type, amount) {
     }
     return resources;
 };
-calculator.buy = function (resources, cost) {
+Calculator.buy = function (resources, cost) {
     var result = true;
     var disable = false;
     var temp = [];

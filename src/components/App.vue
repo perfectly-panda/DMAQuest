@@ -15,13 +15,6 @@ import Game from './Game.vue'
   components: { Game }
 })
 export default class App extends Vue {
-  // undecorated property will be packed in `data` option
-  name = 'world'
-
-  // undecorated method is just method
-  hello () {
-    alert('hello ' + this.name)
-  }
 }
 </script>
 

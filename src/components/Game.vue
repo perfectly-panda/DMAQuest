@@ -18,13 +18,12 @@ import Component from 'vue-class-component'
 import Game from '../game/game'
 import Tabs from './Tabs'
 import Story from './Tabs/Story'
-import Calculator from '../game/calculator'
+import Calculator from '../game/logic/calculator'
 
 // decorat vue class
 @Component({
-    mounted: function () {
-        this.game.load()
-        this.game.game()
+    beforeMount: function () {
+        this.game.initalize()
     },
     beforeDestroy: function () {
         this.game.stop()
@@ -40,7 +39,7 @@ export default class GameView extends Vue {
   currentView = 'story'
 
   storyClicked (item) {
-
+    /*
     var buy = Calculator.buy(this.game.resources, item.pricing)
 
     if(buy[0]){
@@ -52,6 +51,7 @@ export default class GameView extends Vue {
           Calculator.bonusFunc(this.game.resources, bonus[0], bonus[1], bonus[2])
       }
     }
+    */
   }
 }
 </script>
