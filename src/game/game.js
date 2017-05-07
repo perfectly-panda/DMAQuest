@@ -2,6 +2,7 @@ import { PlotItems } from './data/plot';
 import { Tabs } from './data/tabs';
 import { Story } from './data/story';
 import { ResourceItems } from './data/resources';
+import { UpgradeItems } from './data/upgrades';
 import Checks from './logic/checks';
 import PlayerActions from './logic/playerActions';
 var Game = (function () {
@@ -11,6 +12,7 @@ var Game = (function () {
         this.tabs = Tabs;
         this.story = Story;
         this.resources = ResourceItems;
+        this.upgrades = UpgradeItems;
         this.initalize = function () {
             this._load();
             if (this._loaded) {
@@ -36,6 +38,8 @@ var Game = (function () {
         this._tickCount = 0;
         this._load = function () {
             // TODO check for saved data
+            this.tabs.story.visible = true;
+            this.plot.wait.visible = true;
             this._loaded = true;
         };
         this._run = function () {
