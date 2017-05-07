@@ -1,3 +1,4 @@
 export const enum Tab {
-    story
+    story,
+    upgrades
 }

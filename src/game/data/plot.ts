@@ -16,7 +16,15 @@ export const PlotItems: object = {
          'People in line.',
          [['minutes', Type.resource, 10]],
          [],
-         [['minutes', 10, 1.15]],
+         [['minutes', 10, 1]],
          [["people", Bonus.add , 1]]
+    ),
+    'chairs': new Plot(
+        'Chairs',
+         'Chairs to sit in.',
+         [['people', Type.resource, 5]],
+         [],
+         [['people', 5, 1]],
+         [["chairs", Bonus.add , 1]]
     )
 }

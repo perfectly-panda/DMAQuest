@@ -1,8 +1,8 @@
 <template>
   <div id="tabs">
-    <div class="story tab" v-if="tabs.story.visible" v-bind:class="{ active: currentView == 'story' }">{{tabs.story.name}}</div>
-    <div class="upgrades tab" v-if="tabs.upgrades.visible" v-bind:class="{ active: currentView == 'upgrades' }">{{tabs.upgrades.name}}</div>
-    <div class="shop tab" v-if="tabs.shop.visible" v-bind:class="{ active: currentView == 'shop' }">{{tabs.shop.name}}</div>
+    <div class="story tab" v-if="tabs.story.visible" v-bind:class="{ active: currentView == 'story' }" @click="onClick('story')">{{tabs.story.name}}</div>
+    <div class="upgrades tab" v-if="tabs.upgrades.visible" v-bind:class="{ active: currentView == 'upgrades' }" @click="onClick('upgrades')">{{tabs.upgrades.name}}</div>
+    <div class="shop tab" v-if="tabs.shop.visible" v-bind:class="{ active: currentView == 'shop' }" @click="onClick('shop')">{{tabs.shop.name}}</div>
   </div>
 </template>
 
@@ -16,22 +16,16 @@ import Component from 'vue-class-component'
     props: ['tabs', 'currentView']
 })
 export default class Tab extends Vue {
-
+    onClick = function(item){
+            this.$emit('clickedTab', item)
+    }
 }
 </script>
 
 <style scoped>
 
 #tabs {
-    -webkit-order: 0;
-    -ms-flex-order: 0;
-    order: 0;
-    -webkit-flex: 1 1 auto;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-    -webkit-align-self: auto;
-    -ms-flex-item-align: auto;
-    align-self: auto;
+    width:10%;
     padding-left: 5px;
 }
 

@@ -6,6 +6,7 @@
         "experimentalDecorators": true,
         "sourceMap": true,
         "watch": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "allowJs":true
     }
 }

@@ -8,6 +8,7 @@ Calculator.bonusFunc = function (resources, resource, type, amount) {
     switch (type) {
         case 0 /* add */:
             resources[resource].value += amount;
+            resources[resource].visible = true;
             break;
     }
     return resources;

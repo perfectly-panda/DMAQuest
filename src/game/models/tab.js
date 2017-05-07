@@ -1,8 +1,9 @@
 var Tab = (function () {
-    function Tab(name, description) {
+    function Tab(name, description, parents) {
         this.visible = false;
         this.name = name;
         this.description = description;
+        this.parents = parents;
     }
     return Tab;
 }());

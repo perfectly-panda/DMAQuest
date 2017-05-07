@@ -9,5 +9,9 @@ export const ResourceItems: object = {
     'people': new Resource(
         'People',
         'How many people are in line with your friend'
+    ),
+    'chairs': new Resource(
+        'Chairs',
+        'How many places are there to sit'
     )
 }

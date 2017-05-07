@@ -6,6 +6,7 @@ export default class Calculator {
         switch(type){
             case Bonus.add:
                 resources[resource].value += amount
+                resources[resource].visible = true
                 break
         }
 

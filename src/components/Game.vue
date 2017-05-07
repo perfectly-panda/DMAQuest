@@ -1,11 +1,13 @@
 <template>
   <div id="game">
-    <tabs :tabs = "game.tabs" :currentView = "currentView"></tabs>
+    <tabs :tabs = "game.tabs" :currentView = "currentView"
+    @clickedTab = "tabClicked"></tabs>
     <component 
       v-bind:is="currentView" 
       id="content" 
       :game="game"
-      @clickedStory = "storyClicked">
+      @clickedStory = "storyClicked"
+      @clickedUpgrade = "upgradeClicked">
         {{message}}
     </component>
   </div>
@@ -18,6 +20,7 @@ import Component from 'vue-class-component'
 import Game from '../game/game'
 import Tabs from './Tabs'
 import Story from './Tabs/Story'
+import Upgrades from './Tabs/Upgrades'
 import Calculator from '../game/logic/calculator'
 
 // decorat vue class
@@ -28,7 +31,9 @@ import Calculator from '../game/logic/calculator'
     beforeDestroy: function () {
         this.game.stop()
     },
-    components: {Tabs, Story}
+    components: {
+      Tabs, Story, Upgrades
+    }
 
 })
 export default class GameView extends Vue {
@@ -39,19 +44,15 @@ export default class GameView extends Vue {
   currentView = 'story'
 
   storyClicked (item) {
-    /*
-    var buy = Calculator.buy(this.game.resources, item.pricing)
+    this.game.actions.buyPlotItem(this.game, item)
+  }
 
-    if(buy[0]){
-      this.game.story[item.name].visible = true
-      item.available = !buy[1]
+  upgradeClicked (item) {
+    this.game.actions.buyUpgradeItem(this.game, item)
+  }
 
-      for (var i = 0; i < item.bonuses.length; i++){
-        var bonus = item.bonuses[i]
-          Calculator.bonusFunc(this.game.resources, bonus[0], bonus[1], bonus[2])
-      }
-    }
-    */
+  tabClicked(item) {
+    this.currentView = item
   }
 }
 </script>
@@ -83,14 +84,15 @@ export default class GameView extends Vue {
   -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
-    -webkit-flex: 11 1 auto;
-    -ms-flex: 11 1 auto;
-    flex: 11 1 auto;
+    -webkit-flex: 11 0 auto;
+    -ms-flex: 11 0 auto;
+    flex: 11 0 auto;
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
 
-    background-color: pink;
+     background-color: white;
+    border: 1px solid #000000;
     height: 100%;
 }
 
