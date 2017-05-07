@@ -7,10 +7,11 @@ export interface Template {
     description: string
     type: Type
     visible: boolean
+    available: boolean
     tab: Tab
 
-    parents: Array<string>
-    unlocks: Array<string>
+    parents: Array<[string, Type, number]>
+    unlocks: Array<[string, Type, number]>
     pricing: Array<[string, number]>
     bonuses: Array<[string, Bonus, number]>
 

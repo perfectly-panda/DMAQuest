@@ -8,16 +8,15 @@ export default class Plot implements Template {
     description: string
     type: Type = Type.plot
     visible: boolean = false
+    available: boolean = true
     tab: Tab = Tab.story
 
-    storyText: string
-
-    parents: Array<string>
-    unlocks: Array<string>
+    parents: Array<[string, Type, number]>
+    unlocks: Array<[string, Type, number]>
     pricing: Array<[string, number, number]>
     bonuses: Array<[string, Bonus, number]>
 
-    constructor (name: string, description: string, stroyText: string, parents: Array<string>, unlocks: Array<string>, pricing: Array<[string, number, number]>, bonuses: Array<[string, Bonus, number]> ) {
+    constructor (name: string, description: string, parents: Array<[string, Type, number]>, unlocks: Array<[string, Type, number]>, pricing: Array<[string, number, number]>, bonuses: Array<[string, Bonus, number]> ) {
         this.name = name
         this.description = description
 

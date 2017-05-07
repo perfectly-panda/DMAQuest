@@ -1,6 +1,6 @@
-export const enum Type {
-    plot,
-    resource,
-    upgrade,
-    storeItem
+export class Type {
+    static plot = 'plot'
+    static resource = 'resources'
+    static upgrade = 'upgrades'
+    static storeItem = 'storeItems'
 }

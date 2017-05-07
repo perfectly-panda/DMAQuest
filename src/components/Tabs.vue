@@ -1,6 +1,8 @@
 <template>
   <div id="tabs">
     <div class="story tab" v-if="tabs.story.visible" v-bind:class="{ active: currentView == 'story' }">{{tabs.story.name}}</div>
+    <div class="upgrades tab" v-if="tabs.upgrades.visible" v-bind:class="{ active: currentView == 'upgrades' }">{{tabs.upgrades.name}}</div>
+    <div class="shop tab" v-if="tabs.shop.visible" v-bind:class="{ active: currentView == 'shop' }">{{tabs.shop.name}}</div>
   </div>
 </template>
 
@@ -11,10 +13,7 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 // decorat vue class
 @Component({
-    props: ['tabs', 'currentView'],
-    created: function () {
-        console.log(this.tabs)
-    }
+    props: ['tabs', 'currentView']
 })
 export default class Tab extends Vue {
 
@@ -39,6 +38,7 @@ export default class Tab extends Vue {
 .tab {
     min-height: 20px;
     padding: 10px;
+    text-align: center;
 
     border-radius: 15px 0px 0px 15px;
     -moz-border-radius: 15px 0px 0px 15px;
@@ -48,6 +48,14 @@ export default class Tab extends Vue {
 
 .story {
     background-color: blue;
+}
+
+.upgrades {
+    background-color: orange;
+}
+
+.shop {
+    background-color: green;
 }
 
 .active {

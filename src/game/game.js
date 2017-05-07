@@ -1,16 +1,21 @@
 import { PlotItems } from './data/plot';
 import { Tabs } from './data/tabs';
+import { Story } from './data/story';
+import { ResourceItems } from './data/resources';
+import Checks from './checks';
 var Game = (function () {
     function Game() {
         this.loaded = false;
         this.running = false;
         this.tickCount = 0;
+        this.plot = PlotItems;
+        this.tabs = Tabs;
+        this.story = Story;
+        this.resources = ResourceItems;
         this.load = function () {
-            // TODO stuff
-            console.log('loading game');
-            this.plot = PlotItems;
-            this.tabs = Tabs;
+            // TODO check for saved data
             this.tabs.story.visible = true;
+            this.plot.wait.visible = true;
             this.loaded = true;
         };
         this.game = function () {
@@ -38,6 +43,12 @@ var Game = (function () {
                 setTimeout(function () {
                     that.tickCount++;
                     that.updateResourceValues();
+                    if (that.tickCount % 2 === 0) {
+                        Checks.purchasable(that);
+                    }
+                    if (that.tickCount % 7 === 0) {
+                        Checks.available(that);
+                    }
                     if (that.tickCount % 10 === 0) {
                         that.updateResourceCalculations();
                         that.tickCount = 0;

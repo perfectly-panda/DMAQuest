@@ -1,7 +1,9 @@
+import { Type } from './enums/type';
 var Plot = (function () {
-    function Plot(name, description, stroyText, parents, unlocks, pricing, bonuses) {
-        this.type = 0 /* plot */;
+    function Plot(name, description, parents, unlocks, pricing, bonuses) {
+        this.type = Type.plot;
         this.visible = false;
+        this.available = true;
         this.tab = 0 /* story */;
         this.name = name;
         this.description = description;

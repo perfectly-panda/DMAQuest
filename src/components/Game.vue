@@ -1,8 +1,12 @@
 <template>
   <div id="game">
     <tabs :tabs = "game.tabs" :currentView = "currentView"></tabs>
-    <component v-bind:is="currentView" id="content">
-      {{message}}
+    <component 
+      v-bind:is="currentView" 
+      id="content" 
+      :game="game"
+      @clickedStory = "storyClicked">
+        {{message}}
     </component>
   </div>
 </template>
@@ -14,25 +18,41 @@ import Component from 'vue-class-component'
 import Game from '../game/game'
 import Tabs from './Tabs'
 import Story from './Tabs/Story'
+import Calculator from '../game/calculator'
+
 // decorat vue class
 @Component({
-    beforeCreate: function () {
-        this.game = new Game()
+    mounted: function () {
         this.game.load()
         this.game.game()
     },
     beforeDestroy: function () {
         this.game.stop()
     },
-    components: {Tabs, story: Story}
+    components: {Tabs, Story}
 
 })
 export default class GameView extends Vue {
   message = "Loading..."
-  game
+
+  game = new Game()
 
   currentView = 'story'
 
+  storyClicked (item) {
+
+    var buy = Calculator.buy(this.game.resources, item.pricing)
+
+    if(buy[0]){
+      this.game.story[item.name].visible = true
+      item.available = !buy[1]
+
+      for (var i = 0; i < item.bonuses.length; i++){
+        var bonus = item.bonuses[i]
+          Calculator.bonusFunc(this.game.resources, bonus[0], bonus[1], bonus[2])
+      }
+    }
+  }
 }
 </script>
 
