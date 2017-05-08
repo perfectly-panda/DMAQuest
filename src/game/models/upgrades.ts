@@ -11,8 +11,8 @@ export default class Upgrade implements Template {
     description: string
     type: Type = Type.upgrade
     visible: boolean = false
-    available: boolean = true
-    completed: boolean = false
+    available: boolean = false
+    value: boolean = false
     tab: Tab = Tab.upgrades
 
     parents: Array<[string, Type, number]>

@@ -19,7 +19,7 @@ export const PlotItems: object = {
          'People in line.',
          [['minutes', Type.resource, 10]],
          [],
-         [['minutes', 10, 1]],
+         [['minutes', 1, 1]],
          { peopleAdd: new BonusObject("peopleAdd","people", Bonus.add , 1,[],[])}
     ),
     'chairs': new Plot(
@@ -28,7 +28,25 @@ export const PlotItems: object = {
          'Chairs to sit in.',
          [['people', Type.resource, 5]],
          [],
-         [['people', 5, 1]],
+         [['people', 1, 1]],
          { chairsAdd: new BonusObject("chairsAdd","chairs", Bonus.add , 1,[],[])}
+    ),
+    'lines': new Plot(
+        'lines',
+        'Lines',
+         'Open windows.',
+         [['chairs', Type.resource, 5]],
+         [],
+         [['chairs', 1, 1]],
+         { lineAdd: new BonusObject("lineAdd","lines", Bonus.add , 1,[],[])}
+    ),
+    'battery': new Plot(
+        'battery',
+        'Battery',
+         'Your friend\'s remaining battery life.',
+         [['lines', Type.resource, 5]],
+         [],
+         [['minutes', 5, 1]],
+         { batteryAdd: new BonusObject("batteryAdd","battery", Bonus.add , 1,[],[])}
     )
 }

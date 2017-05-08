@@ -10,7 +10,7 @@ export default class Plot implements Template {
     description: string
     type: Type = Type.plot
     visible: boolean = false
-    available: boolean = true
+    available: boolean = false
     tab: Tab = Tab.story
 
     parents: Array<[string, Type, number]>

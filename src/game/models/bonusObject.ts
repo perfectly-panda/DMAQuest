@@ -7,6 +7,7 @@ export default class BonusObject {
     resource: string
     bonusType: Bonus
     baseValue: number
+    
     additives: Array<[Identifier, number]>
     multiplier: Array<[Identifier, number]>
 

@@ -17,20 +17,10 @@ Checks.available = function (game) {
 };
 Checks.purchasable = function (game) {
     for (var item in game.plot) {
-        if (game.plot.hasOwnProperty(item)) {
-            if (!game.plot[item].available) {
-                var nowAvailable = true;
-                var pricing = game.plot[item].pricing;
-                for (var i = 0; i < pricing.length; i++) {
-                    parent = pricing[i];
-                    if (game.resources[parent[0]].value < parent[1]) {
-                        nowAvailable = false;
-                    }
-                }
-                if (nowAvailable)
-                    game.plot[item].available = true;
-            }
-        }
+        this.purchasableLoop(item, game.plot, game);
+    }
+    for (var item in game.upgrades) {
+        this.purchasableLoop(item, game.upgrades, game);
     }
 };
 Checks.availableLoop = function (item, section, game) {
@@ -47,6 +37,22 @@ Checks.availableLoop = function (item, section, game) {
             if (nowAvailable) {
                 section[item].visible = true;
             }
+        }
+    }
+};
+Checks.purchasableLoop = function (item, section, game) {
+    if (section.hasOwnProperty(item)) {
+        if (!section[item].available) {
+            var nowAvailable = true;
+            var pricing = section[item].pricing;
+            for (var i = 0; i < pricing.length; i++) {
+                parent = pricing[i];
+                if (game.resources[parent[0]].value < parent[1]) {
+                    nowAvailable = false;
+                }
+            }
+            if (nowAvailable)
+                section[item].available = true;
         }
     }
 };

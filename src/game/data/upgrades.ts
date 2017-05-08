@@ -10,7 +10,7 @@ export const UpgradeItems: object = {
         'Who knows why, but some of the people who are hanging around aren\'t actually in line.',
         [['people', Type.resource, 10]],
         [],
-        [],
+        [['people', 10, 1]],
         {},
         { bystanders: new ModifierObject(
             new Identifier(Type.plot,'people', "peopleAdd"),
@@ -18,5 +18,14 @@ export const UpgradeItems: object = {
             Modifiers.multiply, 
             .5)
         }
+    ),
+     shop : new Upgrade(
+        'Shop',
+        'With so many people hanging around, it was inevitable that someone started selling useful things.',
+        [['bystanders', Type.upgrade, 1]],
+        [],
+        [['people', 100, 1]],
+        {},
+        {}
     )
 }

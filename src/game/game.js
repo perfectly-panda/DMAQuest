@@ -4,7 +4,9 @@ import { Story } from './data/story';
 import { ResourceItems } from './data/resources';
 import { UpgradeItems } from './data/upgrades';
 import Checks from './logic/checks';
+import Calculator from './logic/calculator';
 import PlayerActions from './logic/playerActions';
+import ResourceTick from './logic/resourceTick';
 var Game = (function () {
     function Game() {
         this.actions = new PlayerActions();
@@ -47,7 +49,7 @@ var Game = (function () {
                 var that = this;
                 setTimeout(function () {
                     that._tickCount++;
-                    //that.updateResourceValues()
+                    that._updateResourceValues();
                     if (that._tickCount % 2 === 0) {
                         Checks.purchasable(that);
                     }
@@ -55,7 +57,7 @@ var Game = (function () {
                         Checks.available(that);
                     }
                     if (that._tickCount % 10 === 0) {
-                        //that.updateResourceCalculations()
+                        that._updateResourceCalculations();
                         that._tickCount = 0;
                     }
                     that._run();
@@ -63,6 +65,20 @@ var Game = (function () {
             }
         };
     }
+    Game.prototype._updateResourceValues = function () {
+        for (var key in this.resources) {
+            if (this.resources.hasOwnProperty(key)) {
+                ResourceTick.tick(this, this.resources[key]);
+            }
+        }
+    };
+    Game.prototype._updateResourceCalculations = function () {
+        for (var key in this.resources) {
+            if (this.resources.hasOwnProperty(key)) {
+                Calculator.updateCache(this, this.resources[key]);
+            }
+        }
+    };
     return Game;
 }());
 export default Game;

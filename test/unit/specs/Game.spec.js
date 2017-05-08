@@ -12,4 +12,13 @@ describe('Game.vue', () => {
       expect(vm.message).to.equal('Loading...')
       expect(vm.currentView).to.equal('story')
   })
+
+  it('should stop game on destroy', () => {
+     const Constructor = Vue.extend(Game)
+      const vm = new Constructor().$mount()
+      vm.$destroy()
+
+      expect(vm.game.isRunning()).to.deep.equal(false)
+
+  })
 })

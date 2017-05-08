@@ -6,7 +6,7 @@
         </span>
     </div>
     <div id="purchasable" class="buttonContainer">
-        <button v-for="item in game.upgrades" v-if="item.visible" class="button" @click="onClick(item)" v-bind:class="{disabled: !item.available, completed: item.completed}">
+        <button v-for="item in game.upgrades" v-if="item.visible" class="button" @click="onClick(item)" v-bind:class="{disabled: !item.available, completed: item.value}">
             {{ item.name }}
         </button>
     </div>

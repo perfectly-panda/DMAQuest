@@ -3,7 +3,7 @@ var Plot = (function () {
     function Plot(name, story, description, parents, unlocks, pricing, bonuses) {
         this.type = Type.plot;
         this.visible = false;
-        this.available = true;
+        this.available = false;
         this.tab = 0 /* story */;
         this.name = name;
         this.story = story;

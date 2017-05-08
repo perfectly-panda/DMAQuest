@@ -6,6 +6,7 @@ import { UpgradeItems } from './data/upgrades'
 import Checks from './logic/checks'
 import Calculator from './logic/calculator'
 import PlayerActions from './logic/playerActions'
+import ResourceTick from './logic/resourceTick'
 
 
 export default class Game {
@@ -63,7 +64,7 @@ export default class Game {
             setTimeout(function () {
                 that._tickCount++
 
-                //that.updateResourceValues()
+                that._updateResourceValues()
 
                 if(that._tickCount % 2 === 0){
                     Checks.purchasable(that)
@@ -74,12 +75,30 @@ export default class Game {
                 }
 
                 if(that._tickCount % 10 === 0){
-                    //that.updateResourceCalculations()
+                    that._updateResourceCalculations()
                     that._tickCount = 0
                 }
 
                 that._run()
             }, 200)
+        }
+    }
+
+    private _updateResourceValues()
+    {
+       for (var key in this.resources) {
+            if (this.resources.hasOwnProperty(key)) {
+                ResourceTick.tick(this, this.resources[key])
+            }
+        }
+    }
+
+    private _updateResourceCalculations()
+    {
+       for (var key in this.resources) {
+            if (this.resources.hasOwnProperty(key)) {
+                Calculator.updateCache(this, this.resources[key])
+            }
         }
     }
 }

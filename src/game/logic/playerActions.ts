@@ -7,6 +7,7 @@ export default class playerActions {
         var buy = Calculator.buy(game.resources, item.pricing)
 
         if(buy[0]){
+
             game.story[item.story].visible = true
             game.plot[item.name].available = !buy[1]
             
@@ -22,7 +23,7 @@ export default class playerActions {
         var buy = Calculator.buy(game.resources, item.pricing)
 
         if(buy[0]){
-            item.completed = true
+            item.value = true
 
             for (var key in item.bonuses) {
                 if (item.bonuses.hasOwnProperty(key)) {

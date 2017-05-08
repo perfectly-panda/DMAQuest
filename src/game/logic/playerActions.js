@@ -17,7 +17,7 @@ var playerActions = (function () {
     playerActions.prototype.buyUpgradeItem = function (game, item) {
         var buy = Calculator.buy(game.resources, item.pricing);
         if (buy[0]) {
-            item.completed = true;
+            item.value = true;
             for (var key in item.bonuses) {
                 if (item.bonuses.hasOwnProperty(key)) {
                     Calculator.bonusFunc(game.resources, item.bonuses[key]);

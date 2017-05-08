@@ -3,27 +3,32 @@ import { Modifiers } from '../models/enums/modifiers'
 import BonusObject from '../models/bonusObject'
 import ModifierObject from '../models/modifierObject'
 import Identifier from '../models/identifier'
+import Game from '../game'
+import Resource from '../models/resources'
 
 export default class Calculator {
 
     public static bonusFunc = function (resources: object, bonus: BonusObject) {
         switch(bonus.bonusType){
             case Bonus.add:
-                resources[bonus.resource].value += this.calculateBonus(bonus)
+                resources[bonus.resource].value += this._calculateBonus(bonus)
                 resources[bonus.resource].visible = true
                 break
         }
     }
 
     public static modifyFunc = function (game: object, modifier: ModifierObject) {
+        var modifies = modifier.modifies
+        var loopBack = modifier.loopBack
+
         switch(modifier.modifierType) {
             case Modifiers.add:
-                var item: BonusObject = game[modifier.modifies.type][modifier.modifies.element][modifier.modifies.item]
-                item.additives.push([new Identifier(modifier.loopBack.type, modifier.loopBack.element, modifier.loopBack.item), modifier.value])
+                var item: BonusObject = game[modifies.type][modifies.element][modifies.item]
+                item.additives.push([new Identifier(loopBack.type, loopBack.element, loopBack.item), modifier.value])
             break
             case Modifiers.multiply:
-                var item: BonusObject = game[modifier.modifies.type][modifier.modifies.element].bonuses[modifier.modifies.item]
-                item.multiplier.push([new Identifier(modifier.loopBack.type, modifier.loopBack.element, modifier.loopBack.item), modifier.value])
+                var item: BonusObject = game[modifies.type][modifies.element].bonuses[modifies.item]
+                item.multiplier.push([new Identifier(loopBack.type, loopBack.element, loopBack.item), modifier.value])
             break
         }
     }
@@ -67,7 +72,13 @@ export default class Calculator {
         return [result, disable]
     }
 
-    public static calculateBonus(bonus: BonusObject){
+    public static updateCache = function(game: Game, resource: Resource) {
+        if(resource.perTick != null){
+            resource.perTickCache = this._calculateBonus(resource.perTick)
+        }
+    }
+
+    private static _calculateBonus(bonus: BonusObject){
         var sum = function (sum, cur) {
             return sum + cur[1]
         }

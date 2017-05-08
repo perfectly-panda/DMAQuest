@@ -10,6 +10,8 @@
         <component is="wait" v-if="game.story.Wait.visible" :resources="game.resources"></component>
         <component is="people" v-if="game.story.People.visible" :resources="game.resources"></component>
         <component is="chairs" v-if="game.story.Chairs.visible" :resources="game.resources"></component>
+        <component is="lines" v-if="game.story.Lines.visible" :resources="game.resources"></component>
+        <component is="battery" v-if="game.story.Battery.visible" :resources="game.resources"></component>
     </div>
   </div>
 </template>
@@ -23,11 +25,13 @@ import Begining from '../Story/Begining'
 import Wait from '../Story/Wait'
 import People from '../Story/People'
 import Chairs from '../Story/Chairs'
+import Lines from '../Story/Line'
+import Battery from '../Story/Battery'
 
 // decorat vue class
 @Component({
     props: ['game'],
-    components: { Begining, Wait, People, Chairs }
+    components: { Begining, Wait, People, Chairs, Lines, Battery }
 })
 export default class Story extends Vue {
     onClick = function(item){

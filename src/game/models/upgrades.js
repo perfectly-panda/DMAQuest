@@ -3,8 +3,8 @@ var Upgrade = (function () {
     function Upgrade(name, description, parents, unlocks, pricing, bonuses, modifies) {
         this.type = Type.upgrade;
         this.visible = false;
-        this.available = true;
-        this.completed = false;
+        this.available = false;
+        this.value = false;
         this.tab = 1 /* upgrades */;
         this.name = name;
         this.description = description;

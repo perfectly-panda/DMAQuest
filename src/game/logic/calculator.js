@@ -2,7 +2,7 @@ import Identifier from '../models/identifier';
 var Calculator = (function () {
     function Calculator() {
     }
-    Calculator.calculateBonus = function (bonus) {
+    Calculator._calculateBonus = function (bonus) {
         var sum = function (sum, cur) {
             return sum + cur[1];
         };
@@ -16,20 +16,22 @@ export default Calculator;
 Calculator.bonusFunc = function (resources, bonus) {
     switch (bonus.bonusType) {
         case 0 /* add */:
-            resources[bonus.resource].value += this.calculateBonus(bonus);
+            resources[bonus.resource].value += this._calculateBonus(bonus);
             resources[bonus.resource].visible = true;
             break;
     }
 };
 Calculator.modifyFunc = function (game, modifier) {
+    var modifies = modifier.modifies;
+    var loopBack = modifier.loopBack;
     switch (modifier.modifierType) {
         case 0 /* add */:
-            var item = game[modifier.modifies.type][modifier.modifies.element][modifier.modifies.item];
-            item.additives.push([new Identifier(modifier.loopBack.type, modifier.loopBack.element, modifier.loopBack.item), modifier.value]);
+            var item = game[modifies.type][modifies.element][modifies.item];
+            item.additives.push([new Identifier(loopBack.type, loopBack.element, loopBack.item), modifier.value]);
             break;
         case 1 /* multiply */:
-            var item = game[modifier.modifies.type][modifier.modifies.element].bonuses[modifier.modifies.item];
-            item.multiplier.push([new Identifier(modifier.loopBack.type, modifier.loopBack.element, modifier.loopBack.item), modifier.value]);
+            var item = game[modifies.type][modifies.element].bonuses[modifies.item];
+            item.multiplier.push([new Identifier(loopBack.type, loopBack.element, loopBack.item), modifier.value]);
             break;
     }
 };
@@ -61,5 +63,10 @@ Calculator.buy = function (resources, cost) {
         }
     }
     return [result, disable];
+};
+Calculator.updateCache = function (game, resource) {
+    if (resource.perTick != null) {
+        resource.perTickCache = this._calculateBonus(resource.perTick);
+    }
 };
 //# sourceMappingURL=calculator.js.map
