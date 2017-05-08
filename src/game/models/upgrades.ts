@@ -3,6 +3,8 @@ import { Type } from './enums/type'
 import { Tab } from './enums/tab'
 import { Bonus } from './enums/bonus'
 import { Modifiers } from './enums/modifiers'
+import BonusObject from './bonusObject'
+import ModifierObject from './modifierObject'
 
 export default class Upgrade implements Template {
     name: string
@@ -16,8 +18,8 @@ export default class Upgrade implements Template {
     parents: Array<[string, Type, number]>
     unlocks: Array<[string, Type, number]>
     pricing: Array<[string, number, number]>
-    bonuses: Array<[string, Bonus, number]>
-    modifies: Array<[string, string, Modifiers, [number, number]]>
+    bonuses: object
+    modifies: object
 
     constructor (
         name: string, 
@@ -25,8 +27,8 @@ export default class Upgrade implements Template {
         parents: Array<[string, Type, number]>, 
         unlocks: Array<[string, Type, number]>, 
         pricing: Array<[string, number, number]>,
-        bonuses: Array<[string, Bonus, number]> ,
-        modifies: Array<[string, string, Modifiers, [number, number]]>
+        bonuses: object,
+        modifies: object
     ) {
         this.name = name
         this.description = description

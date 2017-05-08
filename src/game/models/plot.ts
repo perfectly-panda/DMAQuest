@@ -2,9 +2,11 @@ import { Template } from './template'
 import { Type } from './enums/type'
 import { Tab } from './enums/tab'
 import { Bonus } from './enums/bonus'
+import BonusObject from './bonusObject'
 
 export default class Plot implements Template {
     name: string
+    story: string
     description: string
     type: Type = Type.plot
     visible: boolean = false
@@ -14,10 +16,11 @@ export default class Plot implements Template {
     parents: Array<[string, Type, number]>
     unlocks: Array<[string, Type, number]>
     pricing: Array<[string, number, number]>
-    bonuses: Array<[string, Bonus, number]>
+    bonuses: object
 
-    constructor (name: string, description: string, parents: Array<[string, Type, number]>, unlocks: Array<[string, Type, number]>, pricing: Array<[string, number, number]>, bonuses: Array<[string, Bonus, number]> ) {
+    constructor (name: string, story:string, description: string, parents: Array<[string, Type, number]>, unlocks: Array<[string, Type, number]>, pricing: Array<[string, number, number]>, bonuses: object) {
         this.name = name
+        this.story = story
         this.description = description
 
         this.parents = parents

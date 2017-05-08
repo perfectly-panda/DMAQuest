@@ -5,11 +5,28 @@ var playerActions = (function () {
     playerActions.prototype.buyPlotItem = function (game, item) {
         var buy = Calculator.buy(game.resources, item.pricing);
         if (buy[0]) {
-            game.story[item.name].visible = true;
-            item.available = !buy[1];
-            for (var i = 0; i < item.bonuses.length; i++) {
-                var bonus = item.bonuses[i];
-                Calculator.bonusFunc(game.resources, bonus[0], bonus[1], bonus[2]);
+            game.story[item.story].visible = true;
+            game.plot[item.name].available = !buy[1];
+            for (var key in item.bonuses) {
+                if (item.bonuses.hasOwnProperty(key)) {
+                    Calculator.bonusFunc(game.resources, item.bonuses[key]);
+                }
+            }
+        }
+    };
+    playerActions.prototype.buyUpgradeItem = function (game, item) {
+        var buy = Calculator.buy(game.resources, item.pricing);
+        if (buy[0]) {
+            item.completed = true;
+            for (var key in item.bonuses) {
+                if (item.bonuses.hasOwnProperty(key)) {
+                    Calculator.bonusFunc(game.resources, item.bonuses[key]);
+                }
+            }
+            for (var key in item.modifies) {
+                if (item.modifies.hasOwnProperty(key)) {
+                    Calculator.modifyFunc(game, item.modifies[key]);
+                }
             }
         }
     };

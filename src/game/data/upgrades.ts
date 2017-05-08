@@ -1,6 +1,8 @@
 import Upgrade from '../models/upgrades'
 import { Type } from '../models/enums/type'
 import { Modifiers } from '../models/enums/modifiers'
+import ModifierObject from '../models/modifierObject'
+import Identifier from '../models/identifier'
 
 export const UpgradeItems: object = {
     bystanders : new Upgrade(
@@ -9,7 +11,12 @@ export const UpgradeItems: object = {
         [['people', Type.resource, 10]],
         [],
         [],
-        [],
-        [['people', Type.plot, Modifiers.multiply, [0,2]]]
+        {},
+        { bystanders: new ModifierObject(
+            new Identifier(Type.plot,'people', "peopleAdd"),
+            new Identifier(Type.upgrade,'bystanders', "bystanders"), 
+            Modifiers.multiply, 
+            .5)
+        }
     )
 }

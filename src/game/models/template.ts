@@ -1,6 +1,7 @@
 import { Type } from './enums/type'
 import { Tab } from './enums/tab'
 import { Bonus } from './enums/bonus'
+import BonusObject from './bonusObject'
 
 export interface Template {
     name: string
@@ -13,7 +14,7 @@ export interface Template {
     parents: Array<[string, Type, number]>
     unlocks: Array<[string, Type, number]>
     pricing: Array<[string, number]>
-    bonuses: Array<[string, Bonus, number]>
+    bonuses: object
 
 
 }

@@ -79,7 +79,7 @@
     align-self: flex-start;
 }
 
-.disabled :not(.completed) {
+.disabled  {
     background-color: lightgray;
     color: darkgray;
 }

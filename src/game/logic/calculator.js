@@ -1,17 +1,37 @@
+import Identifier from '../models/identifier';
 var Calculator = (function () {
     function Calculator() {
     }
+    Calculator.calculateBonus = function (bonus) {
+        var sum = function (sum, cur) {
+            return sum + cur[1];
+        };
+        var additives = bonus.additives.reduce(sum, bonus.baseValue);
+        var multipliers = bonus.multiplier.reduce(sum, 1);
+        return additives * multipliers;
+    };
     return Calculator;
 }());
 export default Calculator;
-Calculator.bonusFunc = function (resources, resource, type, amount) {
-    switch (type) {
+Calculator.bonusFunc = function (resources, bonus) {
+    switch (bonus.bonusType) {
         case 0 /* add */:
-            resources[resource].value += amount;
-            resources[resource].visible = true;
+            resources[bonus.resource].value += this.calculateBonus(bonus);
+            resources[bonus.resource].visible = true;
             break;
     }
-    return resources;
+};
+Calculator.modifyFunc = function (game, modifier) {
+    switch (modifier.modifierType) {
+        case 0 /* add */:
+            var item = game[modifier.modifies.type][modifier.modifies.element][modifier.modifies.item];
+            item.additives.push([new Identifier(modifier.loopBack.type, modifier.loopBack.element, modifier.loopBack.item), modifier.value]);
+            break;
+        case 1 /* multiply */:
+            var item = game[modifier.modifies.type][modifier.modifies.element].bonuses[modifier.modifies.item];
+            item.multiplier.push([new Identifier(modifier.loopBack.type, modifier.loopBack.element, modifier.loopBack.item), modifier.value]);
+            break;
+    }
 };
 Calculator.buy = function (resources, cost) {
     var result = true;
@@ -21,8 +41,6 @@ Calculator.buy = function (resources, cost) {
         if (cost[i][1] <= resources[cost[i][0]].value) {
             temp.push([cost[i][0]], cost[i][1]);
             resources[cost[i][0]].value -= cost[i][1];
-            if (cost[i][1] > resources[cost[i][0]].value)
-                disable = true;
         }
         else {
             result = false;
@@ -32,6 +50,9 @@ Calculator.buy = function (resources, cost) {
     if (result) {
         for (var k = 0; k < cost.length; k++) {
             cost[k][1] = +(cost[k][1] * cost[k][2]).toFixed(4);
+            if (cost[k][1] > resources[cost[k][0]].value) {
+                disable = true;
+            }
         }
     }
     else {
