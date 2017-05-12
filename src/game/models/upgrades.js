@@ -1,6 +1,6 @@
 import { Type } from './enums/type';
 var Upgrade = (function () {
-    function Upgrade(name, description, parents, unlocks, pricing, bonuses, modifies) {
+    function Upgrade(name, description, negates, parents, unlocks, pricing, bonuses, modifies) {
         this.type = Type.upgrade;
         this.visible = false;
         this.available = false;
@@ -8,6 +8,7 @@ var Upgrade = (function () {
         this.tab = 1 /* upgrades */;
         this.name = name;
         this.description = description;
+        this.negates = negates;
         this.parents = parents;
         this.unlocks = unlocks;
         this.pricing = pricing;

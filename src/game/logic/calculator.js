@@ -2,6 +2,12 @@ import Identifier from '../models/identifier';
 var Calculator = (function () {
     function Calculator() {
     }
+    Calculator.negateOptions = function (game, item) {
+        for (var i = 0; i < item.negates.length; i++) {
+            var mark = item.negates[i];
+            game[mark.type][mark.element].negated = true;
+        }
+    };
     Calculator._calculateBonus = function (bonus) {
         var sum = function (sum, cur) {
             return sum + cur[1];
@@ -18,6 +24,9 @@ Calculator.bonusFunc = function (resources, bonus) {
         case 0 /* add */:
             resources[bonus.resource].value += this._calculateBonus(bonus);
             resources[bonus.resource].visible = true;
+            break;
+        case 2 /* perTick */:
+            resources[bonus.resource].perTick.additives.push([new Identifier(bonus.identifier.type, bonus.identifier.element, bonus.identifier.item), this._calculateBonus(bonus)]);
             break;
     }
 };
@@ -52,6 +61,7 @@ Calculator.buy = function (resources, cost) {
     if (result) {
         for (var k = 0; k < cost.length; k++) {
             cost[k][1] = +(cost[k][1] * cost[k][2]).toFixed(4);
+            //do we need to disable this resource
             if (cost[k][1] > resources[cost[k][0]].value) {
                 disable = true;
             }

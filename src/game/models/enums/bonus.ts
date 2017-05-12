@@ -1,4 +1,5 @@
 export const enum Bonus {
     add,
-    multiply
+    multiply,
+    perTick
 }

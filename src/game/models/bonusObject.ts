@@ -10,6 +10,7 @@ export default class BonusObject {
     
     additives: Array<[Identifier, number]>
     multiplier: Array<[Identifier, number]>
+    identifier: Identifier
 
     constructor(
         name: string,
@@ -17,7 +18,8 @@ export default class BonusObject {
         bonusType: Bonus,
         baseValue: number,
         additives: Array<[Identifier, number]>,
-        multiplier: Array<[Identifier, number]>){
+        multiplier: Array<[Identifier, number]>,
+        identifier: Identifier){
 
         this.name = name
         this.resource = resource
@@ -25,5 +27,6 @@ export default class BonusObject {
         this.baseValue = baseValue
         this.additives = additives
         this.multiplier = multiplier
+        this.identifier = identifier
     }
 }

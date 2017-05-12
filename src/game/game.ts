@@ -18,6 +18,7 @@ export default class Game {
     public story: object = Story;
     public resources: object = ResourceItems
     public upgrades: object = UpgradeItems
+    public shop: object
 
     public initalize = function () {
         this._load()

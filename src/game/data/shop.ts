@@ -4,7 +4,7 @@ import { Modifiers } from '../models/enums/modifiers'
 import ModifierObject from '../models/modifierObject'
 import Identifier from '../models/identifier'
 
-export const UpgradeItems: object = {
+export const ShopItems: object = {
     bystanders : new Upgrade(
         'Bystanders',
         'Who knows why, but some of the people who are hanging around aren\'t actually in line.',
@@ -24,7 +24,7 @@ export const UpgradeItems: object = {
         'Shop',
         'With so many people hanging around, it was inevitable that someone started selling useful things.',
         [],
-        [[new Identifier(Type.upgrade,'bystanders', ''), 1]],
+        [[new Identifier( Type.upgrade, 'bystanders', ''), 1]],
         [],
         [['people', 10, 1]],
         {},

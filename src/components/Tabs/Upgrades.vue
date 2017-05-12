@@ -18,15 +18,11 @@
 // import dependency
 import Vue from 'vue'
 import Component from 'vue-class-component'
-import Begining from '../Story/Begining'
-import Wait from '../Story/Wait'
-import People from '../Story/People'
-import Chairs from '../Story/Chairs'
 
 // decorat vue class
 @Component({
     props: ['game'],
-    components: { Begining, Wait, People, Chairs }
+    components: { }
 })
 export default class Upgrade extends Vue {
     onClick = function(item){

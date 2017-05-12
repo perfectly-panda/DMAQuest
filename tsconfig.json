@@ -6,7 +6,13 @@
         "experimentalDecorators": true,
         "sourceMap": true,
         "watch": true,
-        "allowSyntheticDefaultImports": true,
-        "allowJs":true
-    }
+        "allowSyntheticDefaultImports": true
+       // "allowJs":true
+    },
+    "exclude": [
+        "build",
+        "node_modules",
+        "config",
+        "test"
+    ]
 }

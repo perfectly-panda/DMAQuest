@@ -12,6 +12,11 @@ var playerActions = (function () {
                     Calculator.bonusFunc(game.resources, item.bonuses[key]);
                 }
             }
+            item.purchased = true;
+            //negate exclusive options
+            if (item.negates.length > 0) {
+                Calculator.negateOptions(game, item);
+            }
         }
     };
     playerActions.prototype.buyUpgradeItem = function (game, item) {
@@ -28,6 +33,10 @@ var playerActions = (function () {
                     Calculator.modifyFunc(game, item.modifies[key]);
                 }
             }
+        }
+        //negate exclusive options
+        if (item.negates.length > 0) {
+            Calculator.negateOptions(game, item);
         }
     };
     return playerActions;

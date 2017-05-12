@@ -16,6 +16,13 @@ export default class playerActions {
                     Calculator.bonusFunc(game.resources, item.bonuses[key])
                 }
             }
+
+            item.purchased = true
+
+            //negate exclusive options
+            if(item.negates.length > 0){
+                Calculator.negateOptions(game, item)
+            }
         }
     }
 
@@ -36,6 +43,11 @@ export default class playerActions {
                     Calculator.modifyFunc(game, item.modifies[key])
                 }
             } 
+        }
+
+        //negate exclusive options
+        if(item.negates.length > 0){
+            Calculator.negateOptions(game, item)
         }
     }
 

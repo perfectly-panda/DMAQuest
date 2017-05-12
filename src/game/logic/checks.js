@@ -25,12 +25,12 @@ Checks.purchasable = function (game) {
 };
 Checks.availableLoop = function (item, section, game) {
     if (section.hasOwnProperty(item)) {
-        if (!section[item].visible) {
+        if (!section[item].visible && !section[item].negated) {
             var nowAvailable = true;
             var parents = section[item].parents;
             for (var i = 0; i < parents.length; i++) {
-                parent = parents[i];
-                if (game[parent[1]][parent[0]].value < parent[2]) {
+                var parent = parents[i];
+                if (game[parent[0].type][parent[0].element].value < parent[1]) {
                     nowAvailable = false;
                 }
             }
@@ -42,7 +42,7 @@ Checks.availableLoop = function (item, section, game) {
 };
 Checks.purchasableLoop = function (item, section, game) {
     if (section.hasOwnProperty(item)) {
-        if (!section[item].available) {
+        if (!section[item].available && !section[item].negated) {
             var nowAvailable = true;
             var pricing = section[item].pricing;
             for (var i = 0; i < pricing.length; i++) {

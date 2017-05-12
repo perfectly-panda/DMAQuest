@@ -21,6 +21,7 @@ import Game from '../game/game'
 import Tabs from './Tabs'
 import Story from './Tabs/Story'
 import Upgrades from './Tabs/Upgrades'
+import Shop from './Tabs/Shop'
 import Calculator from '../game/logic/calculator'
 
 // decorat vue class
@@ -32,7 +33,7 @@ import Calculator from '../game/logic/calculator'
         this.game.stop()
     },
     components: {
-      Tabs, Story, Upgrades
+      Tabs, Story, Upgrades, Shop
     }
 
 })

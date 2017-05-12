@@ -3,6 +3,9 @@ export var Story = {
     People: { visible: false },
     Chairs: { visible: false },
     Lines: { visible: false },
-    Battery: { visible: false }
+    Battery: { visible: false },
+    Wizards: { visible: false },
+    Chipmunks: { visible: false },
+    Portals: { visible: false }
 };
 //# sourceMappingURL=story.js.map

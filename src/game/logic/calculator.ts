@@ -5,6 +5,7 @@ import ModifierObject from '../models/modifierObject'
 import Identifier from '../models/identifier'
 import Game from '../game'
 import Resource from '../models/resources'
+import { Template } from '../models/template'
 
 export default class Calculator {
 
@@ -13,7 +14,10 @@ export default class Calculator {
             case Bonus.add:
                 resources[bonus.resource].value += this._calculateBonus(bonus)
                 resources[bonus.resource].visible = true
-                break
+            break
+            case Bonus.perTick:
+                resources[bonus.resource].perTick.additives.push([new Identifier(bonus.identifier.type, bonus.identifier.element, bonus.identifier.item), this._calculateBonus(bonus)])
+            break
         }
     }
 
@@ -55,6 +59,7 @@ export default class Calculator {
             {
                 cost[k][1] = +(cost[k][1] * cost[k][2]).toFixed(4)
 
+                //do we need to disable this resource
                 if(cost[k][1] > resources[cost[k][0]].value) {
                     disable = true
                 }
@@ -75,6 +80,14 @@ export default class Calculator {
     public static updateCache = function(game: Game, resource: Resource) {
         if(resource.perTick != null){
             resource.perTickCache = this._calculateBonus(resource.perTick)
+        }
+    }
+
+    public static negateOptions(game: Game, item: Template){
+        for (var i = 0; i < item.negates.length; i++){
+            var mark = item.negates[i]
+
+            game[mark.type][mark.element].negated = true
         }
     }
 

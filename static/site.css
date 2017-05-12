@@ -85,6 +85,10 @@
 }
 
 .completed {
-    background-color: lightgreen;
+    background-color: #BCF5A9;
     color: darkgray;
+}
+
+.decision {
+    background-color: #F5A9A9;
 }
