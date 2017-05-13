@@ -84,11 +84,9 @@ export default class GameView extends Vue {
 
     delete(this.game)
 
-    console.log(this.game)
-
     this.game = new Game()
 
-    console.log(this.game.resources.minutes.value)
+    this.game.initalize()
   }
 }
 </script>

@@ -9,5 +9,6 @@ export const Story = {
     Chipmunks: { visible: false },
     Portals: { visible: false },
     StayInside: {visible: false},
-    GoExploring: { visible: false}
+    GoExploring: { visible: false},
+    Huts: {visible: false}
 }

@@ -14,4 +14,4 @@ export var ResourceItems = {
     'huts': new Resource('Huts', 'Huts In the village', new BonusObject('hutTick', 'huts', 0 /* add */, 0, [], [], new Identifier(Type.resource, 'huts', ''))),
     'gold': new Resource('Gold', 'Olde timey money', new BonusObject('goldTick', 'gold', 0 /* add */, 0, [], [], new Identifier(Type.resource, 'portals', '')))
 };
-//# sourceMappingURL=resources.js.map
+//# sourceMappingURL=village.js.map

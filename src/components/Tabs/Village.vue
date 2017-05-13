@@ -1,14 +1,13 @@
 <template>
-  <div id="upgrades">
+  <div id="village">
     <div id="resources" class="listContainer">
         <span v-for="resource in game.resources" v-if="resource.visible" class="list">
             {{resource.name}}: {{helpers.roundToFour(resource.value)}}
         </span>
     </div>
-    <div id="purchasable" class="buttonContainer">
-        <button v-for="item in game.shop" v-if="item.visible" class="button" @click="onClick(item)" v-bind:class="{disabled: !item.available, completed: item.value}">
-            {{ item.name }}
-        </button>
+    <div id="container" class="">
+        <div id="buildings">
+        </div>
     </div>
   </div>
 </template>

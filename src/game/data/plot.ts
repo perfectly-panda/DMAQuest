@@ -84,7 +84,7 @@ export const PlotItems: object = {
          [],
          [['wizards', 5, 1]],
          { portalAdd: new BonusObject("portalAdd","portals", Bonus.add , 1,[],[], new Identifier(Type.plot, 'portals', 'portalAdd')),
-           portalPeopleAdd: new BonusObject("portalAdd","people", Bonus.perTick , 1,[],[], new Identifier(Type.plot, 'portals', 'portalPeopleAdd'))}
+           portalPerTick: new BonusObject("portalAdd","people", Bonus.perTick , 1,[],[], new Identifier(Type.plot, 'portals', 'portalPerTick'))}
     ),
     'stayInside': new Plot(
         'Stay Inside',
@@ -105,7 +105,17 @@ export const PlotItems: object = {
          [[new Identifier(Type.upgrade, 'woodenSword', ''), 1]],
          [],
          [['portals', 5, 1]],
-         {},
+         { exploreAdd: new BonusObject('exploreAdd', 'gold', Bonus.add, 10, [], [], new Identifier(Type.plot,'goExploring', 'exploreAdd'))},
          true
-    )      
+    ),
+    'huts': new Plot(
+        'Huts',
+        'Huts',
+         'Buildings in the village',
+         [],
+         [[new Identifier(Type.plot, 'goExploring', ''), 1]],
+         [],
+         [['gold', 1, 1]],
+         {hutsAdd: new BonusObject('hutsAdd', 'huts', Bonus.add, 1, [], [], new Identifier(Type.plot,'huts', 'hutsAdd'))}
+    )        
 }

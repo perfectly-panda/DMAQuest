@@ -11,8 +11,9 @@ export var PlotItems = {
     'wizards': new Plot('Wizards', 'Wizards', '...wizards?', [new Identifier(Type.plot, 'chipmunks', '')], [[new Identifier(Type.resource, 'lines', ''), 10]], [], [['minutes', 5, 1]], { wizardAdd: new BonusObject("wizardAdd", "wizards", 0 /* add */, 1, [], [], new Identifier(Type.plot, 'wizards', 'wizardsAdd')) }),
     'chipmunks': new Plot('Chipmunks', 'Chipmunks', 'Are they nuts?', [new Identifier(Type.plot, 'wizards', '')], [[new Identifier(Type.resource, 'lines', ''), 10]], [], [['minutes', 5, 1]], { chipmunkAdd: new BonusObject("chipmunkAdd", "chipmunks", 0 /* add */, 1, [], [], new Identifier(Type.plot, 'chipmunks', 'chipmunkAdd')) }),
     'portals': new Plot('Portals', 'Portals', 'Oh noes!', [], [[new Identifier(Type.resource, 'wizards', ''), 10]], [], [['wizards', 5, 1]], { portalAdd: new BonusObject("portalAdd", "portals", 0 /* add */, 1, [], [], new Identifier(Type.plot, 'portals', 'portalAdd')),
-        portalPeopleAdd: new BonusObject("portalAdd", "people", 2 /* perTick */, 1, [], [], new Identifier(Type.plot, 'portals', 'portalPeopleAdd')) }),
+        portalPerTick: new BonusObject("portalAdd", "people", 2 /* perTick */, 1, [], [], new Identifier(Type.plot, 'portals', 'portalPerTick')) }),
     'stayInside': new Plot('Stay Inside', 'StayInside', 'Nope, here for a license, not leaving.', [new Identifier(Type.plot, 'goExploring', '')], [[new Identifier(Type.upgrade, 'woodenSword', ''), 1]], [], [['portals', 5, 1]], {}, true),
-    'goExploring': new Plot('Go Exploring', 'GoExploring', 'Jump through a portal', [new Identifier(Type.plot, 'stayInside', '')], [[new Identifier(Type.upgrade, 'woodenSword', ''), 1]], [], [['portals', 5, 1]], {}, true)
+    'goExploring': new Plot('Go Exploring', 'GoExploring', 'Jump through a portal', [new Identifier(Type.plot, 'stayInside', '')], [[new Identifier(Type.upgrade, 'woodenSword', ''), 1]], [], [['portals', 5, 1]], { exploreAdd: new BonusObject('exploreAdd', 'gold', 0 /* add */, 10, [], [], new Identifier(Type.plot, 'goExploring', 'exploreAdd')) }, true),
+    'huts': new Plot('Huts', 'Huts', 'Buildings in the village', [], [[new Identifier(Type.plot, 'goExploring', ''), 1]], [], [['gold', 1, 1]], { hutsAdd: new BonusObject('hutsAdd', 'huts', 0 /* add */, 1, [], [], new Identifier(Type.plot, 'huts', 'hutsAdd')) })
 };
 //# sourceMappingURL=plot.js.map

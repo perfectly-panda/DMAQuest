@@ -24,6 +24,7 @@
 
         <p v-if="game.story.GoExploring.visible">An old man gave me a wooden sword and pointed at one of the portals... I figured, why not? It's not like the lines were getting any shorter.</p>
         <p v-if="game.story.GoExploring.visible">I found myself in a village that looked like it was from the Renaissance Faire.</p>
+        <p v-if="game.story.Huts.visible">I think there were maybe {{ helpers.roundToFour(game.resources.huts.value) }} huts in the village.</p>
     
         <p v-if="game.story.Chipmunks.visible">And then {{ helpers.roundToFour(game.resources.chipmunks.value) }} chipmunks came into the waiting room.</p>
     </div>
