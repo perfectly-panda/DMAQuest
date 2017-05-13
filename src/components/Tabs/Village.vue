@@ -1,12 +1,10 @@
 <template>
   <div id="village">
-    <div id="resources" class="listContainer">
-        <span v-for="resource in game.resources" v-if="resource.visible" class="list">
-            {{resource.name}}: {{helpers.roundToFour(resource.value)}}
-        </span>
-    </div>
+    <resources :resources="game.resources"></resources>
     <div id="container" class="">
         <div id="buildings">
+        </div>
+        <div id="quests">
         </div>
     </div>
   </div>
@@ -18,11 +16,12 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import Helpers from '../../helpers'
+import Resources from '../Resources'
 
 // decorat vue class
 @Component({
     props: ['game'],
-    components: { }
+    components: { Resources }
 })
 export default class Upgrade extends Vue {
     helpers = Helpers
@@ -32,18 +31,15 @@ export default class Upgrade extends Vue {
             this.$emit('clickedUpgrade', item)
         }
     }
-
-    resourceCost = function(item) {
-        
-    }
 }
 </script>
 
 <style scoped>
 
-#resources {
-    border-bottom: 1px solid black;
-    font-weight: bold;
+#buildings {
+    display: block;
+    width: 50%;
+    border-right: 1px solid black;
 }
 
 .noBorder {
