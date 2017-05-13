@@ -26,6 +26,7 @@ export default class Checks {
 
     private static availableLoop = function ( item: string, section: Template, game ) {
         if (section.hasOwnProperty(item)) {
+
             if(!section[item].visible && !section[item].negated) {
                 var nowAvailable = true
                 var parents = section[item].parents

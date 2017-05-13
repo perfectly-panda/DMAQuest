@@ -17,5 +17,10 @@ export const Tabs: object = {
         'Shop',
         'Spend your moola',
         [[new Identifier(Type.upgrade, 'shop', ''), 1]]
+    ),
+    'village': new Tab(
+        'Village',
+        'Am I in the Renn Faire?',
+        [[new Identifier(Type.plot, 'goExploring', ''), 1]]
     )
 }

@@ -7,5 +7,7 @@ export const Story = {
     Battery: { visible: false },
     Wizards: { visible: false },
     Chipmunks: { visible: false },
-    Portals: { visible: false }
+    Portals: { visible: false },
+    StayInside: {visible: false},
+    GoExploring: { visible: false}
 }

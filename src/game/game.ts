@@ -12,16 +12,19 @@ import ResourceTick from './logic/resourceTick'
 export default class Game {
 
     public actions: PlayerActions = new PlayerActions()
-    public plot: object = PlotItems
-    public tabs: object = Tabs
+    public plot: object 
+    public tabs: object 
 
-    public story: object = Story;
-    public resources: object = ResourceItems
-    public upgrades: object = UpgradeItems
+    public story: object 
+    public resources: object 
+    public upgrades: object
     public shop: object
 
-    public initalize = function () {
+    constructor() {
         this._load()
+    }
+
+    public initalize = function () {
 
         if(this._loaded){
             console.log('starting game')
@@ -52,9 +55,21 @@ export default class Game {
     private _load = function () {
         // TODO check for saved data
 
+        var data = localStorage.getItem('gameData')
 
-        this.tabs.story.visible = true
-        this.plot.wait.visible = true
+        if(data != null){
+            this.load(data)
+        } else{
+            this.plot = PlotItems
+            this.tabs = Tabs
+
+            this.story = Story
+            this.resources = ResourceItems
+            this.upgrades = UpgradeItems
+
+            this.tabs.story.visible = true
+            this.plot.wait.visible = true
+        }
 
         this._loaded = true; 
     }
@@ -77,6 +92,14 @@ export default class Game {
 
                 if(that._tickCount % 10 === 0){
                     that._updateResourceCalculations()
+                }
+
+                //once a minute
+                if(that._tickCount % (5 * 60) === 0){
+                    if(that.resources.battery.value > 0){
+                        that.save();
+                    }
+
                     that._tickCount = 0
                 }
 
@@ -102,4 +125,51 @@ export default class Game {
             }
         }
     }
+
+    public save(){
+        console.log('saving...')
+        var data = {
+            plot: this.plot,
+            tabs: this.tabs,
+
+            story: this.story,
+            resources: this.resources,
+            upgrades: this.upgrades,
+            shop: this.shop,
+
+            tickCount: this._tickCount
+        }
+
+        localStorage.setItem('gameData', btoa(JSON.stringify(data)))
+    }
+
+    public load(data: string){
+        var gameData  = JSON.parse(atob(data))
+
+        this.plot = gameData.plot
+        this.tabs = gameData.tabs
+
+        this.story = gameData.story
+        this.resources = gameData.resources
+        this.upgrades = gameData.upgrades
+        this.shop = gameData.shop
+
+        this._tickCount = gameData.tickCount
+
+        if(this._tickCount == null) {this._tickCount = 0}
+    }
+
+    public reset(){
+        localStorage.removeItem('gameData')
+
+        this.plot = PlotItems
+        this.tabs = Tabs
+
+        this.story = Story
+        this.resources = ResourceItems
+        this.upgrades = UpgradeItems
+       // this.shop = Shop
+
+        this._tickCount = 0
+    } 
 }

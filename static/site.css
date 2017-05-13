@@ -92,3 +92,28 @@
 .decision {
     background-color: #F5A9A9;
 }
+
+.decision.disabled {
+    background-color: #895A5A;
+    color: darkgray;
+}
+
+.actionBar {
+    list-style-type: none;
+    float: right;
+}
+
+.actionBar li {
+    display: inline;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.clear {
+    clear: both;
+}
+
+.titleBar {
+    display: inline-block
+}

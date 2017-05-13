@@ -1,4 +1,18 @@
 <template>
+<div id="app">
+  <div id="header" class="clear">
+    <h1 class="titleBar">DMA Quest</h1>
+    <ul class="actionBar">
+      <li @click="saveClicked()" >Save 
+        <span class="warning" v-if="game.resources.battery.value == 0">(Autosave Off!!!)</span>
+        <span class="warning" v-if='game.resources.battery.value &gt; 0 && game.resources.battery.value &lt; 15'>(Battery Low)</span>
+      </li>
+      <li @click="resetClicked()">
+        Clear Save
+      </li>
+    </ul>
+  </div>
+
   <div id="game">
     <tabs :tabs = "game.tabs" :currentView = "currentView"
     @clickedTab = "tabClicked"></tabs>
@@ -11,6 +25,7 @@
         {{message}}
     </component>
   </div>
+  </div>
 </template>
 
 <script>
@@ -22,6 +37,7 @@ import Tabs from './Tabs'
 import Story from './Tabs/Story'
 import Upgrades from './Tabs/Upgrades'
 import Shop from './Tabs/Shop'
+import Village from './Tabs/Village'
 import Calculator from '../game/logic/calculator'
 
 // decorat vue class
@@ -33,7 +49,7 @@ import Calculator from '../game/logic/calculator'
         this.game.stop()
     },
     components: {
-      Tabs, Story, Upgrades, Shop
+      Tabs, Story, Upgrades, Shop, Village
     }
 
 })
@@ -54,6 +70,25 @@ export default class GameView extends Vue {
 
   tabClicked(item) {
     this.currentView = item
+  }
+
+  saveClicked() {
+    this.game.save()
+  }
+
+  resetClicked() {
+    this.game.reset()
+    this.game.stop()
+
+    this.game
+
+    delete(this.game)
+
+    console.log(this.game)
+
+    this.game = new Game()
+
+    console.log(this.game.resources.minutes.value)
   }
 }
 </script>
@@ -95,6 +130,11 @@ export default class GameView extends Vue {
      background-color: white;
     border: 1px solid #000000;
     height: 100%;
+}
+
+.warning {
+  color: red;
+  font-weight: bold;
 }
 
 </style>

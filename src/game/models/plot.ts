@@ -15,7 +15,8 @@ export default class Plot implements Template {
     tab: Tab = Tab.story
     negates: Array<Identifier>
     negated: boolean = false
-    purchased: boolean = false
+    value: boolean = false
+    buyOnce: boolean = false
 
     parents: Array<[Identifier, number]>
     unlocks: Array<[Identifier, number]>
@@ -23,7 +24,8 @@ export default class Plot implements Template {
     bonuses: object
 
     constructor (name: string, story:string, description: string, negates: Array<Identifier>,      
-        parents: Array<[Identifier, number]>, unlocks: Array<[Identifier, number]>, pricing: Array<[string, number, number]>, bonuses: object) {
+        parents: Array<[Identifier, number]>, unlocks: Array<[Identifier, number]>, pricing: Array<[string, number, number]>, bonuses: object
+        ,buyOnce: boolean = false) {
         
         this.name = name
         this.story = story
@@ -34,5 +36,7 @@ export default class Plot implements Template {
         this.unlocks = unlocks
         this.pricing = pricing
         this.bonuses = bonuses
+
+        this.buyOnce = buyOnce
     }
 }

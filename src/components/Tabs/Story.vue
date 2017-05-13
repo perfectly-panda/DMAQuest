@@ -3,10 +3,10 @@
     <div id="items" class="buttonContainer">
         <button 
         v-for="item in game.plot" 
-        v-if="item.visible && !item.negated" 
+        v-if="item.visible && !item.negated && (item.buyOnce == false || item.value == false)" 
         class="button" 
         @click="onClick(item)" 
-        v-bind:class="{disabled: !item.available, decision: item.negates.length > 0 && item.purchased == false}">
+        v-bind:class="{disabled: !item.available, decision: item.negates.length > 0 && item.value == false}">
             {{ item.name }}
         </button>
     </div>
@@ -17,8 +17,15 @@
         <component is="chairs" v-if="game.story.Chairs.visible" :resources="game.resources"></component>
         <component is="lines" v-if="game.story.Lines.visible" :resources="game.resources"></component>
         <component is="battery" v-if="game.story.Battery.visible" :resources="game.resources"></component>
+
         <p v-if="game.story.Wizards.visible">And then {{ helpers.roundToFour(game.resources.wizards.value) }} wizards came into the waiting room.</p>
-        <p v-if="game.story.Portals.visible">You wouldn't believe what happened. The wizards opened up {{ helpers.roundToFour(game.resources.wizards.value) }} portals and people started coming out of them.</p>
+        <p v-if="game.story.Portals.visible">You wouldn't believe what happened next. The wizards opened up {{ helpers.roundToFour(game.resources.portals.value) }} portals and people started coming out of them.</p>
+        <p v-if="game.story.StayInside.visible">An old man gave me a wooden sword and pointed at one of the portals... but I really just wanted my renewal.</p>
+
+        <p v-if="game.story.GoExploring.visible">An old man gave me a wooden sword and pointed at one of the portals... I figured, why not? It's not like the lines were getting any shorter.</p>
+        <p v-if="game.story.GoExploring.visible">I found myself in a village that looked like it was from the Renaissance Faire.</p>
+    
+        <p v-if="game.story.Chipmunks.visible">And then {{ helpers.roundToFour(game.resources.chipmunks.value) }} chipmunks came into the waiting room.</p>
     </div>
   </div>
 </template>

@@ -5,11 +5,10 @@ import Upgrade from '../models/upgrades'
 export default class playerActions {
     public buyPlotItem(game:any, item: Plot){
         var buy = Calculator.buy(game.resources, item.pricing)
-
         if(buy[0]){
 
             game.story[item.story].visible = true
-            game.plot[item.name].available = !buy[1]
+            item.available = !buy[1]
             
             for (var key in item.bonuses) {
                 if (item.bonuses.hasOwnProperty(key)) {
@@ -17,7 +16,7 @@ export default class playerActions {
                 }
             }
 
-            item.purchased = true
+            item.value = true
 
             //negate exclusive options
             if(item.negates.length > 0){

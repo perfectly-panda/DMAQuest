@@ -29,5 +29,15 @@ export const UpgradeItems: object = {
         [['people', 10, 1]],
         {},
         {}
+    ),
+    woodenSword : new Upgrade(
+        'Wooden Sword',
+        'And old man offers you a wooden sword. "It\'s dangerous to go alone!" he says. "Take This."',
+        [],
+        [[new Identifier(Type.resource, 'portals', ''), 10]],
+        [],
+        [],
+        [],
+        {}
     )
 }

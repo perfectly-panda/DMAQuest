@@ -10,13 +10,7 @@ import ResourceTick from './logic/resourceTick';
 var Game = (function () {
     function Game() {
         this.actions = new PlayerActions();
-        this.plot = PlotItems;
-        this.tabs = Tabs;
-        this.story = Story;
-        this.resources = ResourceItems;
-        this.upgrades = UpgradeItems;
         this.initalize = function () {
-            this._load();
             if (this._loaded) {
                 console.log('starting game');
                 this.start();
@@ -40,8 +34,19 @@ var Game = (function () {
         this._tickCount = 0;
         this._load = function () {
             // TODO check for saved data
-            this.tabs.story.visible = true;
-            this.plot.wait.visible = true;
+            var data = localStorage.getItem('gameData');
+            if (data != null) {
+                this.load(data);
+            }
+            else {
+                this.plot = PlotItems;
+                this.tabs = Tabs;
+                this.story = Story;
+                this.resources = ResourceItems;
+                this.upgrades = UpgradeItems;
+                this.tabs.story.visible = true;
+                this.plot.wait.visible = true;
+            }
             this._loaded = true;
         };
         this._run = function () {
@@ -58,12 +63,19 @@ var Game = (function () {
                     }
                     if (that._tickCount % 10 === 0) {
                         that._updateResourceCalculations();
+                    }
+                    //once a minute
+                    if (that._tickCount % (5 * 60) === 0) {
+                        if (that.resources.battery.value > 0) {
+                            that.save();
+                        }
                         that._tickCount = 0;
                     }
                     that._run();
                 }, 200);
             }
         };
+        this._load();
     }
     Game.prototype._updateResourceValues = function () {
         for (var key in this.resources) {
@@ -78,6 +90,42 @@ var Game = (function () {
                 Calculator.updateCache(this, this.resources[key]);
             }
         }
+    };
+    Game.prototype.save = function () {
+        console.log('saving...');
+        var data = {
+            plot: this.plot,
+            tabs: this.tabs,
+            story: this.story,
+            resources: this.resources,
+            upgrades: this.upgrades,
+            shop: this.shop,
+            tickCount: this._tickCount
+        };
+        localStorage.setItem('gameData', btoa(JSON.stringify(data)));
+    };
+    Game.prototype.load = function (data) {
+        var gameData = JSON.parse(atob(data));
+        this.plot = gameData.plot;
+        this.tabs = gameData.tabs;
+        this.story = gameData.story;
+        this.resources = gameData.resources;
+        this.upgrades = gameData.upgrades;
+        this.shop = gameData.shop;
+        this._tickCount = gameData.tickCount;
+        if (this._tickCount == null) {
+            this._tickCount = 0;
+        }
+    };
+    Game.prototype.reset = function () {
+        localStorage.removeItem('gameData');
+        this.plot = PlotItems;
+        this.tabs = Tabs;
+        this.story = Story;
+        this.resources = ResourceItems;
+        this.upgrades = UpgradeItems;
+        // this.shop = Shop
+        this._tickCount = 0;
     };
     return Game;
 }());

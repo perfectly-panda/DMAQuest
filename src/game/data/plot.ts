@@ -6,7 +6,7 @@ import Identifier from '../models/identifier'
 
 export const PlotItems: object = {
     'wait': new Plot(
-        'wait',
+        'Wait',
         'Wait',
          'Wait in line.',
          [],
@@ -16,7 +16,7 @@ export const PlotItems: object = {
          { minutesAdd: new BonusObject("minutesAdd","minutes", Bonus.add , 1, [], [], new Identifier(Type.plot, 'wait', 'minutesAdd'))}
     ),
     'people': new Plot(
-        'people',
+        'People',
         'People',
          'People in line.',
          [],
@@ -26,7 +26,7 @@ export const PlotItems: object = {
          { peopleAdd: new BonusObject("peopleAdd","people", Bonus.add , 1,[],[], new Identifier(Type.plot, 'people', 'peopleAdd'))}
     ),
     'chairs': new Plot(
-        'chairs',
+        'Chairs',
         'Chairs',
          'Chairs to sit in.',
          [],
@@ -36,7 +36,7 @@ export const PlotItems: object = {
          { chairsAdd: new BonusObject("chairsAdd","chairs", Bonus.add , 1,[],[], new Identifier(Type.plot, 'chairs', 'chairsAdd'))}
     ),
     'lines': new Plot(
-        'lines',
+        'Lines',
         'Lines',
          'Open windows.',
          [],
@@ -46,7 +46,7 @@ export const PlotItems: object = {
          { lineAdd: new BonusObject("lineAdd","lines", Bonus.add , 1,[],[], new Identifier(Type.plot, 'lines', 'lineAdd'))}
     ),
     'battery': new Plot(
-        'battery',
+        'Battery',
         'Battery',
          'Your friend\'s remaining battery life.',
          [],
@@ -56,7 +56,7 @@ export const PlotItems: object = {
          { batteryAdd: new BonusObject("batteryAdd","battery", Bonus.add , 1,[],[], new Identifier(Type.plot, 'battery', 'batteryAdd'))}
     ),
     'wizards': new Plot(
-        'wizards',
+        'Wizards',
         'Wizards',
          '...wizards?',
          [new Identifier(Type.plot, 'chipmunks', '')],
@@ -66,7 +66,7 @@ export const PlotItems: object = {
          { wizardAdd: new BonusObject("wizardAdd","wizards", Bonus.add , 1,[],[], new Identifier(Type.plot, 'wizards', 'wizardsAdd'))}
     ),
     'chipmunks': new Plot(
-        'chipmunks',
+        'Chipmunks',
         'Chipmunks',
          'Are they nuts?',
          [new Identifier(Type.plot, 'wizards', '')],
@@ -76,7 +76,7 @@ export const PlotItems: object = {
          { chipmunkAdd: new BonusObject("chipmunkAdd","chipmunks", Bonus.add , 1,[],[], new Identifier(Type.plot, 'chipmunks', 'chipmunkAdd'))}
     ),
     'portals': new Plot(
-        'portals',
+        'Portals',
         'Portals',
          'Oh noes!',
          [],
@@ -85,5 +85,27 @@ export const PlotItems: object = {
          [['wizards', 5, 1]],
          { portalAdd: new BonusObject("portalAdd","portals", Bonus.add , 1,[],[], new Identifier(Type.plot, 'portals', 'portalAdd')),
            portalPeopleAdd: new BonusObject("portalAdd","people", Bonus.perTick , 1,[],[], new Identifier(Type.plot, 'portals', 'portalPeopleAdd'))}
+    ),
+    'stayInside': new Plot(
+        'Stay Inside',
+        'StayInside',
+         'Nope, here for a license, not leaving.',
+         [new Identifier(Type.plot, 'goExploring', '')],
+         [[new Identifier(Type.upgrade, 'woodenSword', ''), 1]],
+         [],
+         [['portals', 5, 1]],
+         {},
+         true
+    ),
+    'goExploring': new Plot(
+        'Go Exploring',
+        'GoExploring',
+         'Jump through a portal',
+         [new Identifier(Type.plot, 'stayInside', '')],
+         [[new Identifier(Type.upgrade, 'woodenSword', ''), 1]],
+         [],
+         [['portals', 5, 1]],
+         {},
+         true
     )      
 }
