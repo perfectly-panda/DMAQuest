@@ -2,7 +2,7 @@
   <div id="upgrades">
     <resources :resources="game.resources"></resources>
     <div id="purchasable" class="buttonContainer">
-        <button v-for="item in game.upgrades" v-if="item.visible" class="button" @click="onClick(item)" v-bind:class="{disabled: !item.available, completed: item.value}">
+        <button v-for="item in game.upgrades" v-if="item.flags.visible" class="button" @click="onClick(item)" v-bind:class="{disabled: !item.flags.available, completed: item.value}">
             {{ item.name }}
         </button>
     </div>
@@ -26,7 +26,7 @@ export default class Upgrade extends Vue {
     helpers = Helpers
 
     onClick = function(item){
-        if(item.available && !item.completed){
+        if(item.flags.available && !item.flags.completed){
             this.$emit('clickedUpgrade', item)
         }
     }
@@ -40,7 +40,7 @@ export default class Upgrade extends Vue {
 <style scoped>
 
 #resources {
-    border-bottom: 1px solid black;
+    border-bottom: 1px groove black;
     font-weight: bold;
 }
 

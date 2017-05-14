@@ -3,10 +3,10 @@
     <div id="items" class="buttonContainer">
         <button 
         v-for="item in game.plot" 
-        v-if="item.visible && !item.negated && (item.buyOnce == false || item.value == false)" 
+        v-if="item.flags.visible && !item.flags.negated && (item.flags.buyOnce == false || item.value == false)" 
         class="button" 
         @click="onClick(item)" 
-        v-bind:class="{disabled: !item.available, decision: item.negates.length > 0 && item.value == false}">
+        v-bind:class="{disabled: !item.flags.available, decision: item.negates.length > 0 && item.value == false}">
             {{ item.name }}
         </button>
     </div>
@@ -54,7 +54,7 @@ export default class Story extends Vue {
     helpers = Helpers
 
     onClick = function(item){
-        if(item.available){
+        if(item.flags.available){
             this.$emit('clickedStory', item)
         }
     }

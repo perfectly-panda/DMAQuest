@@ -12,9 +12,9 @@ export default class Resource {
     maxValue: number
     perTick: BonusObject
     perTickCache: number = 0
-    condition: [Identifier, number, Conditional]
+    condition: Array<[Identifier, number, Conditional]>
 
-    constructor (name: string, description: string, perTick: BonusObject, maxValue: number = -1, condition: [Identifier, number, Conditional] = null) {
+    constructor (name: string, description: string, perTick: BonusObject, maxValue: number = -1, condition: Array<[Identifier, number, Conditional]> = []) {
         this.name = name
         this.description = description
         this.maxValue = maxValue

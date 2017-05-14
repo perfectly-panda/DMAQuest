@@ -5,7 +5,7 @@ var Calculator = (function () {
     Calculator.negateOptions = function (game, item) {
         for (var i = 0; i < item.negates.length; i++) {
             var mark = item.negates[i];
-            game[mark.type][mark.element].negated = true;
+            game[mark.type][mark.element].flags.negated = true;
         }
     };
     Calculator._calculateBonus = function (bonus) {
@@ -26,13 +26,13 @@ Calculator.bonusFunc = function (resources, bonus) {
             resources[bonus.resource].visible = true;
             break;
         case 2 /* perTick */:
-            resources[bonus.resource].perTick.additives.push([new Identifier(bonus.identifier.type, bonus.identifier.element, bonus.identifier.item), this._calculateBonus(bonus)]);
+            resources[bonus.resource].perTick.additives.push([Identifier.Copy(bonus.identifier), this._calculateBonus(bonus)]);
             break;
     }
 };
 Calculator.modifyFunc = function (game, modifier) {
     var modifies = modifier.modifies;
-    var loopBack = modifier.loopBack;
+    var loopBack = modifier.identifier;
     switch (modifier.modifierType) {
         case 0 /* add */:
             var item = game[modifies.type][modifies.element][modifies.item];

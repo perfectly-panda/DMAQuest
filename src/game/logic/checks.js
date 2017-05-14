@@ -14,6 +14,9 @@ Checks.available = function (game) {
     for (var item in game.upgrades) {
         this.availableLoop(item, game.upgrades, game);
     }
+    for (var item in game.village) {
+        this.availableLoop(item, game.village, game);
+    }
 };
 Checks.purchasable = function (game) {
     for (var item in game.plot) {
@@ -25,7 +28,7 @@ Checks.purchasable = function (game) {
 };
 Checks.availableLoop = function (item, section, game) {
     if (section.hasOwnProperty(item)) {
-        if (!section[item].visible && !section[item].negated) {
+        if (!section[item].flags.visible && !section[item].flags.negated) {
             var nowAvailable = true;
             var parents = section[item].parents;
             for (var i = 0; i < parents.length; i++) {
@@ -35,14 +38,14 @@ Checks.availableLoop = function (item, section, game) {
                 }
             }
             if (nowAvailable) {
-                section[item].visible = true;
+                section[item].flags.visible = true;
             }
         }
     }
 };
 Checks.purchasableLoop = function (item, section, game) {
     if (section.hasOwnProperty(item)) {
-        if (!section[item].available && !section[item].negated) {
+        if (!section[item].flags.available && !section[item].flags.negated) {
             var nowAvailable = true;
             var pricing = section[item].pricing;
             for (var i = 0; i < pricing.length; i++) {
@@ -52,7 +55,7 @@ Checks.purchasableLoop = function (item, section, game) {
                 }
             }
             if (nowAvailable)
-                section[item].available = true;
+                section[item].flags.available = true;
         }
     }
 };

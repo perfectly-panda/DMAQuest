@@ -1,11 +1,8 @@
 <template>
-  <div id="upgrades">
-    <resources :resources="game.resources"></resources>
-    <div id="purchasable" class="buttonContainer">
-        <button v-for="item in game.shop" v-if="item.flags.visible" class="button" @click="onClick(item)" v-bind:class="{disabled: !item.flags.available, completed: item.flags.value}">
-            {{ item.name }}
-        </button>
-    </div>
+  <div id="questBoard">
+    <h3 class="header">Quest Board</h3>
+    <div v-if='quest == "none"'>Quest List</div>
+    <div v-else>Current Quest</div>
   </div>
 </template>
 
@@ -19,11 +16,12 @@ import Resources from '../Resources'
 
 // decorat vue class
 @Component({
-    props: ['game'],
+    props: [],
     components: { Resources }
 })
 export default class Upgrade extends Vue {
     helpers = Helpers
+    quest = 'none'
 
     onClick = function(item){
         if(item.flags.available && !item.flags.completed){
@@ -39,9 +37,10 @@ export default class Upgrade extends Vue {
 
 <style scoped>
 
-#resources {
-    border-bottom: 1px solid black;
+.header {
+    border-bottom: 1px groove black;
     font-weight: bold;
+    width: 100%;
 }
 
 .noBorder {

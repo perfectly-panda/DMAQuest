@@ -6,7 +6,7 @@ var playerActions = (function () {
         var buy = Calculator.buy(game.resources, item.pricing);
         if (buy[0]) {
             game.story[item.story].visible = true;
-            item.available = !buy[1];
+            item.flags.available = !buy[1];
             for (var key in item.bonuses) {
                 if (item.bonuses.hasOwnProperty(key)) {
                     Calculator.bonusFunc(game.resources, item.bonuses[key]);

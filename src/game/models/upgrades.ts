@@ -6,43 +6,40 @@ import { Modifiers } from './enums/modifiers'
 import BonusObject from './bonusObject'
 import ModifierObject from './modifierObject'
 import Identifier from './identifier'
+import Flags from './flags'
 
 export default class Upgrade implements Template {
     name: string
     description: string
-    type: Type = Type.upgrade
-    visible: boolean = false
-    available: boolean = false
-    value: boolean = false
-    tab: Tab = Tab.upgrades
-    negates: Array<Identifier>
-    negated: false
 
-    parents: Array<[Identifier, number]>
-    unlocks: Array<[Identifier, number]>
-    pricing: Array<[string, number, number]>
-    bonuses: object
-    modifies: object
+    flags: Flags = new Flags()
+    value = false
+
+    identifier: Identifier
+
+    parents: Array<[Identifier, number]> = []
+    pricing: Array<[string, number, number]> = []
+    negates: Array<Identifier> = []
+    bonuses: object = {}
+    modifies: object = {}
 
     constructor (
         name: string, 
         description: string,
-        negates: Array<Identifier>,
-
-        parents: Array<[Identifier, number]>, 
-        unlocks: Array<[Identifier, number]>, 
-        pricing: Array<[string, number, number]>,
-        bonuses: object,
-        modifies: object
+        identifier: Identifier,
+        optionalParameters?: any
     ) {
         this.name = name
         this.description = description
-        this.negates = negates
 
-        this.parents = parents
-        this.unlocks = unlocks
-        this.pricing = pricing
-        this.bonuses = bonuses
-        this.modifies = modifies
+        this.identifier = identifier
+
+        if(optionalParameters.parents != null) this.parents = optionalParameters.parents
+        if(optionalParameters.pricing != null) this.pricing = optionalParameters.pricing
+        if(optionalParameters.negates != null) this.negates = optionalParameters.negates
+        if(optionalParameters.bonuses != null) this.bonuses = optionalParameters.bonuses
+        if(optionalParameters.modifies != null) this.modifies = optionalParameters.modifies
+        if(optionalParameters.buyOnce != null) this.flags.buyOnce = optionalParameters.buyOnce
+
     }
 }

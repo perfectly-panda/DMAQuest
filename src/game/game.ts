@@ -3,6 +3,9 @@ import Tab, { Tabs } from './data/tabs'
 import { Story } from './data/story'
 import { ResourceItems } from './data/resources'
 import { UpgradeItems } from './data/upgrades'
+import { ShopItems } from './data/shop'
+import { VillageItems } from './data/village'
+import { QuestItems } from './data/quests'
 import Checks from './logic/checks'
 import Calculator from './logic/calculator'
 import PlayerActions from './logic/playerActions'
@@ -19,6 +22,9 @@ export default class Game {
     public resources: object 
     public upgrades: object
     public shop: object
+
+    public village: object
+    public quests: object
 
     constructor() {
         this._load()
@@ -53,22 +59,30 @@ export default class Game {
     private _tickCount: number = 0;
 
     private _load = function () {
-        // TODO check for saved data
+        if(localStorage.getItem("baseData") == null){
+            var saveData = {
+                plot: PlotItems,
+                tabs: Tabs,
+
+                story: Story,
+                resources: ResourceItems,
+                upgrades: UpgradeItems,
+                shop: ShopItems,
+                village: VillageItems,
+                quests: QuestItems
+            }
+
+            localStorage.setItem("baseData", btoa(JSON.stringify(saveData)))
+        }
 
         var data = localStorage.getItem('gameData')
 
         if(data != null){
             this.load(data)
         } else{
-            this.plot = PlotItems
-            this.tabs = Tabs
 
-            this.story = Story
-            this.resources = ResourceItems
-            this.upgrades = UpgradeItems
-
-            this.tabs.story.visible = true
-            this.plot.wait.visible = true
+            data = localStorage.getItem("baseData")
+            this.load(data)
         }
 
         this._loaded = true; 
@@ -137,6 +151,9 @@ export default class Game {
             upgrades: this.upgrades,
             shop: this.shop,
 
+            village: this.village,
+            quests: this.quests,
+
             tickCount: this._tickCount
         }
 
@@ -153,6 +170,8 @@ export default class Game {
         this.resources = gameData.resources
         this.upgrades = gameData.upgrades
         this.shop = gameData.shop
+        this.village = gameData.village
+        this.quests = gameData.quests
 
         this._tickCount = gameData.tickCount
 
@@ -168,7 +187,9 @@ export default class Game {
         this.story = Story
         this.resources = ResourceItems
         this.upgrades = UpgradeItems
-       // this.shop = Shop
+       this.shop = ShopItems
+            this.village = VillageItems
+            this.quests = QuestItems
 
         this._tickCount = 0
     } 

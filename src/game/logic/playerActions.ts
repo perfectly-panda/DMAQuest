@@ -8,7 +8,7 @@ export default class playerActions {
         if(buy[0]){
 
             game.story[item.story].visible = true
-            item.available = !buy[1]
+            item.flags.available = !buy[1]
             
             for (var key in item.bonuses) {
                 if (item.bonuses.hasOwnProperty(key)) {

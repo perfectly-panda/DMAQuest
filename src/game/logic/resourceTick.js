@@ -17,19 +17,19 @@ var ResourceTick = (function () {
 export default ResourceTick;
 ResourceTick.tick = function (game, resource) {
     if (resource.perTick != null && resource.perTickCache != 0) {
-        if (resource.condition != null) {
+        if (resource.condition != null && resource.condition.length > 0) {
             var cond = resource.condition;
-            var value = game[cond[0].type][cond[0].element][cond[0].item];
+            var value = game[cond[0][0].type][cond[0][0].element][cond[0][0].item];
             var result;
-            switch (cond[2]) {
+            switch (cond[0][2]) {
                 case 0 /* greaterThan */:
-                    result = value > cond[1];
+                    result = value > cond[0][1];
                     break;
                 case 1 /* lessThan */:
-                    result = value < cond[1];
+                    result = value < cond[0][1];
                     break;
                 case 2 /* equalTo */:
-                    result = value == cond[1];
+                    result = value == cond[0][1];
                     break;
                 default:
                     result = false;

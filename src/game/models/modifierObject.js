@@ -1,7 +1,7 @@
 var ModifierObject = (function () {
-    function ModifierObject(modifies, loopBack, modifierType, value) {
+    function ModifierObject(modifies, identifier, modifierType, value) {
         this.modifies = modifies;
-        this.loopBack = loopBack;
+        this.identifier = identifier;
         this.modifierType = modifierType;
         this.value = value;
     }

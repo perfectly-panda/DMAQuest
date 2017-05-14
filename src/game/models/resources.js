@@ -1,7 +1,7 @@
 var Resource = (function () {
     function Resource(name, description, perTick, maxValue, condition) {
         if (maxValue === void 0) { maxValue = -1; }
-        if (condition === void 0) { condition = null; }
+        if (condition === void 0) { condition = []; }
         this.value = 0;
         this.visible = false;
         this.purchasable = false;

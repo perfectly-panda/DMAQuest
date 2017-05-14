@@ -1,9 +1,9 @@
 <template>
   <div id="tabs">
-    <div class="story tab" v-if="tabs.story.visible" v-bind:class="{ active: currentView == 'story' }" @click="onClick('story')">{{tabs.story.name}}</div>
-    <div class="upgrades tab" v-if="tabs.upgrades.visible" v-bind:class="{ active: currentView == 'upgrades' }" @click="onClick('upgrades')">{{tabs.upgrades.name}}</div>
-    <div class="shop tab" v-if="tabs.shop.visible" v-bind:class="{ active: currentView == 'shop' }" @click="onClick('shop')">{{tabs.shop.name}}</div>
-    <div class="village tab" v-if="tabs.village.visible" v-bind:class="{ active: currentView == 'village' }" @click="onClick('village')">{{tabs.village.name}}</div>
+    <div class="story tab" v-if="tabs.story.flags.visible" v-bind:class="{ active: currentView == 'story' }" @click="onClick('story')">{{tabs.story.name}}</div>
+    <div class="upgrades tab" v-if="tabs.upgrades.flags.visible" v-bind:class="{ active: currentView == 'upgrades' }" @click="onClick('upgrades')">{{tabs.upgrades.name}}</div>
+    <div class="shop tab" v-if="tabs.shop.flags.visible" v-bind:class="{ active: currentView == 'shop' }" @click="onClick('shop')">{{tabs.shop.name}}</div>
+    <div class="village tab" v-if="tabs.village.flags.visible" v-bind:class="{ active: currentView == 'village' }" @click="onClick('village')">{{tabs.village.name}}</div>
   </div>
 </template>
 

@@ -8,4 +8,6 @@ Type.plot = 'plot';
 Type.resource = 'resources';
 Type.upgrade = 'upgrades';
 Type.storeItem = 'storeItems';
+Type.tab = 'tabs';
+Type.village = 'village';
 //# sourceMappingURL=type.js.map

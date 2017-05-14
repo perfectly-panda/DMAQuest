@@ -3,30 +3,24 @@ import Identifier from './identifier'
 
 
 export default class BonusObject {
-    name: string
-    resource: string
     bonusType: Bonus
     baseValue: number
-    
-    additives: Array<[Identifier, number]>
-    multiplier: Array<[Identifier, number]>
+
     identifier: Identifier
+    resource: string
+    
+    additives: Array<[Identifier, number]> = []
+    multiplier: Array<[Identifier, number]> = []
 
     constructor(
-        name: string,
-        resource: string,
         bonusType: Bonus,
         baseValue: number,
-        additives: Array<[Identifier, number]>,
-        multiplier: Array<[Identifier, number]>,
+        resource: string,
         identifier: Identifier){
 
-        this.name = name
-        this.resource = resource
         this.bonusType = bonusType
         this.baseValue = baseValue
-        this.additives = additives
-        this.multiplier = multiplier
         this.identifier = identifier
+        this.resource = resource
     }
 }

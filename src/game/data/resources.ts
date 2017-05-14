@@ -9,55 +9,65 @@ export const ResourceItems: object = {
     'minutes': new Resource(
         'Minutes',
         'How long your friend has been waiting',
-        new BonusObject('minutesTick', 'minutes', Bonus.add, .1, [], [], new Identifier(Type.resource, 'minutes', '')),
+        new BonusObject(Bonus.add, .1, 'minutes',
+            new Identifier(Type.resource, 'minutes', '')),
         -1,
-        [new Identifier('resources', 'battery', 'value'), 0, Conditional.greaterThan]
+        [[new Identifier('resources', 'battery', 'value'), 0, Conditional.greaterThan]]
     ),
     'people': new Resource(
         'People',
         'How many people are in line with your friend',
-        new BonusObject('peopleTick', 'people', Bonus.add, 0, [], [], new Identifier(Type.resource, 'people', ''))
+        new BonusObject(Bonus.add, 0, 'people',
+            new Identifier(Type.resource, 'people', ''))
     ),
     'chairs': new Resource(
         'Chairs',
         'How many places are there to sit',
-        new BonusObject('chairsTick', 'chairs', Bonus.add, 0, [], [], new Identifier(Type.resource, 'chairs', ''))
+        new BonusObject(Bonus.add, 0, 'chairs',
+            new Identifier(Type.resource, 'chairs', ''))
     ),
     'lines': new Resource(
         'Lines',
         'How many lines there are',
-        new BonusObject('lineTick', 'lines', Bonus.add, 0, [], [], new Identifier(Type.resource, 'lines', ''))
+        new BonusObject(Bonus.add, 0, 'lines',
+            new Identifier(Type.resource, 'lines', ''))
     ),
     'battery': new Resource(
         'Battery',
         'How much battery life is left',
-        new BonusObject('batteryTick', 'battery', Bonus.add, -.01, [], [], new Identifier(Type.resource, 'battery', '')),
+        new BonusObject(Bonus.add, -.01, 'battery',
+            new Identifier(Type.resource, 'battery', '')),
         100
     ),
      'wizards': new Resource(
         'Wizards',
         'How many wizards came in',
-        new BonusObject('wizardTick', 'wizards', Bonus.add, 0, [], [], new Identifier(Type.resource, 'wizards', ''))
+        new BonusObject(Bonus.add, 0, 'wizards',
+            new Identifier(Type.resource, 'wizards', ''))
     ),
      'chipmunks': new Resource(
         'Chipmunks',
         'How many chipmunks came in',
-        new BonusObject('chipmunkTick', 'chipmunks', Bonus.add, 0, [], [], new Identifier(Type.resource, 'chipmunks', ''))
+        new BonusObject(Bonus.add, 0, 'chipmunks',
+            new Identifier(Type.resource, 'chipmunks', ''))
     ),
      'portals': new Resource(
         'Portals',
         'Wizard summoning protals',
-        new BonusObject('portalTick', 'portals', Bonus.add, 0, [], [], new Identifier(Type.resource, 'portals', ''))
+        new BonusObject(Bonus.add, 0, 'portals',
+            new Identifier(Type.resource, 'portals', ''))
     ),
      'huts': new Resource(
         'Huts',
         'Huts In the village',
-        new BonusObject('hutTick', 'huts', Bonus.add, 0, [], [], new Identifier(Type.resource, 'huts', ''))
+        new BonusObject(Bonus.add, 0, 'huts',
+            new Identifier(Type.resource, 'huts', ''))
     ),
      'gold': new Resource(
         'Gold',
         'Olde timey money',
-        new BonusObject('goldTick', 'gold', Bonus.add, 0, [], [], new Identifier(Type.resource, 'portals', ''))
+        new BonusObject(Bonus.add, 0, 'portals',
+            new Identifier(Type.resource, 'portals', ''))
     )
 
 }

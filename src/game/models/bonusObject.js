@@ -1,12 +1,11 @@
 var BonusObject = (function () {
-    function BonusObject(name, resource, bonusType, baseValue, additives, multiplier, identifier) {
-        this.name = name;
-        this.resource = resource;
+    function BonusObject(bonusType, baseValue, resource, identifier) {
+        this.additives = [];
+        this.multiplier = [];
         this.bonusType = bonusType;
         this.baseValue = baseValue;
-        this.additives = additives;
-        this.multiplier = multiplier;
         this.identifier = identifier;
+        this.resource = resource;
     }
     return BonusObject;
 }());
