@@ -14,9 +14,11 @@
   },
   "dependencies": {
     "cypress": "^10.9.0",
+    "pinia": "^2.0.22",
     "vue": "^3.2.38"
   },
   "devDependencies": {
+    "@pinia/testing": "^0.0.14",
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^16.11.56",

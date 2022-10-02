@@ -9,29 +9,20 @@
   <div class="main">
     <TitleBar />
     <div class="currentTab">{{currentTab}}</div>
+    <Story v-if="currentTab === 'Story'"/>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import Sidebar from './components/Sidebar.vue'
 import TitleBar from './components/TitleBar.vue'
+import Story from './components/Story.vue'
 
-export default defineComponent({
-    name: "App",
-    components: { Sidebar,
-      TitleBar },
-    data: () => ({
-      "currentTab": "Story",
-      "tabs": ["Story"],
-      "game": "test"
-    }),
-    methods: {
-      tabChange(tab: string) {
-        this.currentTab = tab
-      }
-    }
-})
+let currentTab = 'Story'
+let tabs = ['Story']
+function tabChange(tab: string) {
+  currentTab = tab
+}
 </script>
 
 <style scoped>

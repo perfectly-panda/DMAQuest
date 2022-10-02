@@ -9,29 +9,21 @@
   </nav>  
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
 import Button from './Button.vue'
 
-export default defineComponent({
-  name: 'Sidebar',
-  components: {
-    Button
-  },
-  props: {
-    currentTab: { type: String, required: true },
-    tabs: { type: Array<string>, required: true },
-  },
-  data: () => ({
-    active: 'rgb(153, 153, 153)'
-  }),
-  emits: ["tabChange"],
-  methods: {
-    selectTab(tab: string) {
-      this.$emit("tabChange", tab)
-    }
-  }
+const props = defineProps({
+  currentTab: { type: String, required: true },
+  tabs: { type: Array<string>, required: true },
 })
+
+const emit = defineEmits(['tabChange'])
+
+const active = 'rgb(153, 153, 153)'
+
+function selectTab(tab: string) {
+  emit("tabChange", tab)
+}
 </script>
 
 <style scoped>
