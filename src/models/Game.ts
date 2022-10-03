@@ -6,9 +6,11 @@ export default class {
   private _totalTicks = 0
 
   private _resourceStore: IResourceStore
+  private _gameStore: any
 
-  constructor(resourceStore: any) {
+  constructor(resourceStore: any, gameStore: any) {
     this._resourceStore = resourceStore as IResourceStore
+    this._gameStore = gameStore
   }
 
   get totalTicks(): number {
@@ -46,5 +48,9 @@ export default class {
     this._running = false
     clearInterval(this._ticker)
     this._ticker = null
+  }
+
+  initialize(): void {
+    this.start()
   }
 }
