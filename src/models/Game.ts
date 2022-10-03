@@ -22,6 +22,7 @@ export default class {
 
   private _runTick(): void {
     if(this._running) {
+      console.log('tick')
       const tick = Date.now()
       const ticks = tick - this._currentTick
       this._totalTicks += ticks

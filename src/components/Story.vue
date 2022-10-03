@@ -6,21 +6,28 @@
     <p v-if="!gameStore.globals.includes('hideText')">{{storyStore.waitTime.en[0]}} <Value :resValue="waitTime" /> {{storyStore.waitTime.en[1]}}</p>
     <p v-else>{{storyStore.waitTime.en[2]}}: <Value :resValue="waitTime" /></p>
   </div>
-  <div id="wait">
+  <div id="chair" v-if="gameStore.flags.story.includes('chairs')">
+    <p v-if="!gameStore.globals.includes('hideText')">{{storyStore.chairs.en[0]}} <Value :resValue="chairs" /> {{storyStore.chairs.en[1]}}</p>
+    <p v-else>{{storyStore.chairs.en[2]}}: <Value :resValue="chairs" /></p>
+  </div>
+  <div id="buttons">
     <Button 
       :text="'Wait'"
       :class="'available-action'"
       />
-  </div>
-  <div id="chairs">
-    <div v-if="gameStore.flags.story.includes('chairs')">
-    </div>
-    <Button v-else
-      :text="'Find a chair'"
+    <Button v-if="!gameStore.flags.story.includes('chairs')"
+      :text="'Look for a chair'"
       :class="'available-action'"
       @click="findChair"
-      />
-    </div>
+    />
+    <Button v-if="gameStore.flags.story.includes('chairs') &&
+      !gameStore.flags.story.includes('sit') &&
+      resourceStore.chairs.count >= 1"
+      :text="'Sit down'"
+      :class="'available-action'"
+      @click="findChair"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -38,9 +45,11 @@
   const storyStore = useStoryStore()
 
   const waitTime = computed(() => (resourceStore.waitTime.count / 60).toFixed(2))
+  const chairs = computed(() => resourceStore.chairs.count.toFixed(2))
 
   function findChair() {
     addFlag('chairs')
+    resourceStore.chairs.perSecond =.1
   }
 
   function addFlag(flag: string) {

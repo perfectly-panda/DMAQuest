@@ -28,7 +28,7 @@ function clicked() {
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
-    width: 100px;
+    width: 125px;
     border: 1px solid black;
   }
 

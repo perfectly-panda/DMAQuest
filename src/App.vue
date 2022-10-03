@@ -24,9 +24,14 @@ const resourceStore = useResourceStore()
 
 let game = new Game(resourceStore, gameStore)
 game.start()
-</script>
 
-const 
+window.addEventListener('focus', () => {
+  console.log('focus')
+ // game.stop()
+ // game.start()
+})
+
+</script>
 
 <style scoped>
   .sidebar {

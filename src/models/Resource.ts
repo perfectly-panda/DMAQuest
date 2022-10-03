@@ -21,6 +21,10 @@ export default class {
     return this._count
   }
 
+  set perSecond(count: number) {
+    this._perSecond = count
+  }
+
   increment(ticks: number): void {
     if(this._perSecond > 0) {
       const count = this._count + this._perSecond * (ticks / 1000)
