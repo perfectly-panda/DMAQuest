@@ -1,4 +1,5 @@
 import type IResourceStore from '../stores/IResourceStore';
+import Flag from './Flag';
 export default class {
   private _running = false
   private _currentTick = Date.now()
@@ -41,7 +42,7 @@ export default class {
     this._currentTick = Date.now()
 
     if(!this._ticker) {
-      this._ticker = setInterval(this._runTick.bind(this), 100)
+      this._ticker = setInterval(this._runTick.bind(this), 250)
     }
   }
 
@@ -52,6 +53,7 @@ export default class {
   }
 
   initialize(): void {
+    this._gameStore.addStoryFlag(new Flag("waitTime",0))
     this.start()
   }
 }

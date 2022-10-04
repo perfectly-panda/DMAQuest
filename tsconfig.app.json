@@ -4,6 +4,7 @@
   "exclude": ["node_modules", "dist", "spec/**/*.spec.ts"],
   "compilerOptions": {
     "composite": true,
+    "types": ["node"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]

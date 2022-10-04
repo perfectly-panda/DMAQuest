@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import Sidebar from './components/Sidebar.vue'
 import TitleBar from './components/TitleBar.vue'
-import Story from './components/Story.vue'
+import Story from './components/story/Story.vue'
 import Game from "./models/Game";
 import { useGameStore } from './stores/GameStore';
 import { useResourceStore } from './stores/ResourceStore';
@@ -23,7 +23,7 @@ const gameStore = useGameStore()
 const resourceStore = useResourceStore()
 
 let game = new Game(resourceStore, gameStore)
-game.start()
+game.initialize()
 
 window.addEventListener('focus', () => {
   console.log('focus')

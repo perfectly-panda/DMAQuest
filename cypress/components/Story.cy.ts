@@ -1,4 +1,4 @@
-import Story from '@/components/Story.vue'
+import Story from '@/components/story/Story.vue'
 import { createTestingPinia } from '@pinia/testing'
 import { useGameStore } from '../../src/stores/GameStore'
 import { useResourceStore } from '../../src/stores/ResourceStore'

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import type Flag from '@/models/Flag'
 
 export const useGameStore = defineStore('game', {
   state: () => ({
@@ -7,12 +8,20 @@ export const useGameStore = defineStore('game', {
       options: ['Story'],
     },
     flags: {
-      globals: ["showText"],
-      story: ["intro"],
+      globals: Array<string>(),
+      story: Array<Flag>(),
     }
   }),
   getters: {
     globals: state => state.flags.globals,
-    story: state => state.flags.story
+    story: state => state.flags.story,
   },
+  actions: {
+    addStoryFlag(flag: Flag) {
+      if(!this.flags.story.find((i: Flag) => i.text == flag.text)){
+        this.flags.story.push(flag)
+        this.flags.story.sort((a, b) => b.order - a.order)
+      }
+    }
+  }
 })
