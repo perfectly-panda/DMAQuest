@@ -30,7 +30,7 @@ export default class {
       this._currentTick = tick
 
       for(const resource of Object.values(this._resourceStore)) {
-        if(resource.increment) {
+        if(resource?.increment) {
            resource.increment(ticks)
         }
       }

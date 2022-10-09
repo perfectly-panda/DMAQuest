@@ -16,5 +16,5 @@
     resValue: Number,
   })
 
-  const compValue = computed(() => props.resValue?.toFixed(2) ?? 0).toString()
+  const compValue = computed(() => (props.resValue?.toFixed(2) ?? 0).toString())
 </script>

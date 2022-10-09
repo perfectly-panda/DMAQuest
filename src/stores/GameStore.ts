@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type Flag from '@/models/Flag'
+import type { IStoryFlag } from '@/types/IStoryFlag'
 
 export const useGameStore = defineStore('game', {
   state: () => ({
@@ -13,6 +14,9 @@ export const useGameStore = defineStore('game', {
     }
   }),
   getters: {
+    getStoryFlags: (state) : Array<IStoryFlag> => {
+      return state.flags.story.map((flag) => flag.text)
+    }
   },
   actions: {
     addStoryFlag(flag: Flag) {

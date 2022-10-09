@@ -5,13 +5,12 @@
       :text="'Wait'"
       :class="'available-action'"
       ></Button>
-    <Button v-if="!gameStore.flags.story.includes('chairs')"
+    <Button v-if="!gameStore.getStoryFlags.includes('chairs')"
       :text="'Look for a chair'"
       :class="'available-action'"
       @click="findChair"
     ></Button>
-    <Button v-if="gameStore.flags.story.includes('chairs') &&
-      !gameStore.flags.story.includes('sit') &&
+    <Button v-if="gameStore.getStoryFlags.includes('chairs') &&
       resourceStore.chairs.count >= 1"
       :text="'Sit down'"
       :class="'available-action'"

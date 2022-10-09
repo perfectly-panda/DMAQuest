@@ -1,26 +1,26 @@
 <template>
-  <div v-for="storyItem in gameStore.flags.story">
+  <div v-for="storyItem in gameStore.getStoryFlags">
     <Log
-      :tag="storyItem.text"
-      :content="storyStore[storyItem.text].en"
+      :tag="storyItem"
+      :content="storyStore[storyItem].en"
       :shortVersion="gameStore.flags.globals.includes('hideText')"
-      :resValue="resourceStore[storyItem.text]?.count"
+      :resValue="resourceStore[storyItem]?.count"
     ></Log>
   </div>
   <div id="intro">
-    <p v-if="!gameStore.flags.globals.includes('hideText')">{{storyStore.intro.en}}</p>
+    <p v-if="!gameStore.flags.globals.includes('hideText')">{{storyStore.intro.en[0]}}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useResourceStore } from '@/stores/ResourceStore'
-import { useGameStore } from '@/stores/GameStore'
-import { useStoryStore } from '@/stores/StoryStore'
+  import { useResourceStore } from '@/stores/ResourceStore'
+  import { useGameStore } from '@/stores/GameStore'
+  import { useStoryStore } from '@/stores/StoryStore'
 
-import Log from '@/components/story/Log.vue'
+  import Log from '@/components/story/Log.vue'
 
-const resourceStore = useResourceStore()
-const gameStore = useGameStore()
-const storyStore = useStoryStore()
+  const resourceStore = useResourceStore()
+  const gameStore = useGameStore()
+  const storyStore = useStoryStore()
 </script>
 
