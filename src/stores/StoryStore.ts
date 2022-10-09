@@ -1,6 +1,6 @@
 import StoryText from '@/models/StoryText'
-import { defineStore } from 'pinia'
-import type { IStoryStore } from '../types/IStoryStore'
+import { defineStore, type Store } from 'pinia'
+import type { IStoryStore } from '../types/IStore'
 
 export const useStoryStore = defineStore('story', {
   state: (): IStoryStore => ({
@@ -16,7 +16,10 @@ export const useStoryStore = defineStore('story', {
         "Chairs:"
       ]),
     people: new StoryText(["I tried to count how many people are in line, but there's at least", 'people.', "People:" ]),
+    battery: new StoryText(["I'm starting to get worried about my phone battery. It's at", '%.', "Battery:" ]),
   }),
   getters: {
   },
 })
+
+export type StoryStore = Store<'story', IStoryStore, {}, {}>

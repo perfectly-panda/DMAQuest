@@ -4,7 +4,7 @@
       :tag="storyItem"
       :content="storyStore[storyItem].en"
       :shortVersion="gameStore.flags.globals.includes('hideText')"
-      :resValue="resourceStore[storyItem]?.count"
+      :resValue="resourceStore[storyItem].count"
     ></Log>
   </div>
   <div id="intro">
