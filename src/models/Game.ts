@@ -1,4 +1,4 @@
-import type IResourceStore from '../stores/IResourceStore';
+import type { IResourceStore } from '../types/IResourceStore';
 import Flag from './Flag';
 export default class {
   private _running = false
@@ -6,11 +6,11 @@ export default class {
   private _ticker: any
   private _totalTicks = 0
 
-  private _resourceStore: IResourceStore
+  private _resourceStore: IResourceStore 
   private _gameStore: any
 
-  constructor(resourceStore: any, gameStore: any) {
-    this._resourceStore = resourceStore as IResourceStore
+  constructor(resourceStore: IResourceStore , gameStore: any) {
+    this._resourceStore = resourceStore
     this._gameStore = gameStore
   }
 
@@ -29,7 +29,7 @@ export default class {
       this._totalTicks += ticks
       this._currentTick = tick
 
-      for(const resource of Object.values(this._resourceStore.resources)) {
+      for(const resource of Object.values(this._resourceStore)) {
         if(resource.increment) {
            resource.increment(ticks)
         }

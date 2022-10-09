@@ -13,8 +13,6 @@ export const useGameStore = defineStore('game', {
     }
   }),
   getters: {
-    globals: state => state.flags.globals,
-    story: state => state.flags.story,
   },
   actions: {
     addStoryFlag(flag: Flag) {

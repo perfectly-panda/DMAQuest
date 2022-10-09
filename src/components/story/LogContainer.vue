@@ -1,14 +1,14 @@
 <template>
-  <div v-for="storyItem in gameStore.story">
+  <div v-for="storyItem in gameStore.flags.story">
     <Log
       :tag="storyItem.text"
       :content="storyStore[storyItem.text].en"
-      :shortVersion="gameStore.globals.includes('hideText')"
-      :resValue="resourceStore.resources[storyItem.text].count"
+      :shortVersion="gameStore.flags.globals.includes('hideText')"
+      :resValue="resourceStore[storyItem.text]?.count"
     ></Log>
   </div>
   <div id="intro">
-    <p v-if="!gameStore.globals.includes('hideText')">{{storyStore.intro.en}}</p>
+    <p v-if="!gameStore.flags.globals.includes('hideText')">{{storyStore.intro.en}}</p>
   </div>
 </template>
 
