@@ -31,4 +31,8 @@ export default class {
       this._count = Math.min(this.max, count)
     }
   }
+
+  addStatic(count: number): void {
+    this._count += count
+  }
 }

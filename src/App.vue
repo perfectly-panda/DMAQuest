@@ -6,8 +6,6 @@
   <div class="main">
     <TitleBar />
     <Story v-if="gameStore.tabs.currentTab === 'Story'"/>
-
-    <div class="currentTab">{{gameStore.tabs.currentTab}}</div>
   </div>
 </template>
 

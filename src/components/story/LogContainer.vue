@@ -19,8 +19,8 @@
 
   import Log from '@/components/story/Log.vue'
 
-  const resourceStore = useResourceStore()
   const gameStore = useGameStore()
   const storyStore = useStoryStore()
+  const resourceStore = useResourceStore()
 </script>
 

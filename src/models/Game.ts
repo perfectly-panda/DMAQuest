@@ -1,15 +1,15 @@
-import type { IResourceStore } from '../types/IResourceStore';
-import Flag from './Flag';
+import type { ResourceStore } from '../types/IStore';
+import Resource from './Resource';
 export default class {
   private _running = false
   private _currentTick = Date.now()
   private _ticker: any
   private _totalTicks = 0
 
-  private _resourceStore: IResourceStore 
+  private _resourceStore: ResourceStore
   private _gameStore: any
 
-  constructor(resourceStore: IResourceStore , gameStore: any) {
+  constructor(resourceStore: ResourceStore, gameStore: any) {
     this._resourceStore = resourceStore
     this._gameStore = gameStore
   }
@@ -23,14 +23,13 @@ export default class {
 
   private _runTick(): void {
     if(this._running) {
-      console.log('tick')
       const tick = Date.now()
       const ticks = tick - this._currentTick
       this._totalTicks += ticks
       this._currentTick = tick
 
       for(const resource of Object.values(this._resourceStore)) {
-        if(resource?.increment) {
+        if(resource instanceof Resource) {
            resource.increment(ticks)
         }
       }
@@ -53,7 +52,6 @@ export default class {
   }
 
   initialize(): void {
-    this._gameStore.addStoryFlag(new Flag("waitTime",0))
     this.start()
   }
 }

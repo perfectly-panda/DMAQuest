@@ -15,7 +15,10 @@ export const useGameStore = defineStore('game', {
   }),
   getters: {
     getStoryFlags: (state) : Array<IStoryFlag> => {
-      return state.flags.story.map((flag) => flag.text)
+      return state.flags.story.map((f) => f.text)
+    },
+    checkStoryFlag: (state) => (flag: string) : boolean => {
+      return state.flags.story.some((f) => f.text === flag)
     }
   },
   actions: {

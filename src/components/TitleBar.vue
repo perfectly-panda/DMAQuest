@@ -1,11 +1,19 @@
 <template>
-  <h1>DMA Quest</h1>
+ <div class="title">DMA Quest - {{gameStore.tabs.currentTab}}</div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">import { useGameStore } from '@/stores/GameStore';
 
-export default defineComponent({
-  name: 'TitleBar',
-})
+
+const gameStore = useGameStore()
 </script>
+
+<style>
+.title {
+  display: flex;
+  text-align: center;
+  margin: auto;
+  font-size: 2em;
+  font-weight: bold;
+}
+</style>

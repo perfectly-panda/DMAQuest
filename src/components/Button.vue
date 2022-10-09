@@ -36,6 +36,10 @@ function clicked() {
         background-color: #eee;
   }
 
+  .unavailable-action {
+        background-color: #ccc;
+  }
+
   .active {
     background-color: rgb(217, 217, 217);
   }

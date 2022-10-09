@@ -15,7 +15,7 @@ export const useStoryStore = defineStore('story', {
         "chairs left.",
         "Chairs:"
       ]),
-    people: new StoryText([])
+    people: new StoryText(["I tried to count how many people are in line, but there's at least", 'people.', "People:" ]),
   }),
   getters: {
   },

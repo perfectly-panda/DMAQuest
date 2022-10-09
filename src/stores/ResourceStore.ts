@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+import { defineStore, type Store } from 'pinia'
 import Resource from '@/models/Resource'
 import type { IResourceStore } from '../types/IResourceStore'
 
