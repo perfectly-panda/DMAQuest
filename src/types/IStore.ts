@@ -12,4 +12,4 @@ type IStore<T> = {
 export type IResourceStore = IStore<Resource>
 export type IStoryStore = IStore<StoryText>
 
-export type IStoryFlag = keyof IResourceStore | keyof IStoryStore
+export type IStoryFlag = "intro" | "waitTime" | "chairs" | "people" | "battery"

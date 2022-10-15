@@ -1,4 +1,4 @@
-import type { IStoryFlag } from "@/types/IStoryFlag"
+import type { IStoryFlag } from "@/types/IStore"
 
 export default class {
   public text: IStoryFlag

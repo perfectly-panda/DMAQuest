@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useResourceStore } from '@/stores/ResourceStore'
+  import { useResourceStore, type ResourceStore } from '@/stores/ResourceStore'
   import { useGameStore } from '@/stores/GameStore'
   import { useStoryStore } from '@/stores/StoryStore'
 

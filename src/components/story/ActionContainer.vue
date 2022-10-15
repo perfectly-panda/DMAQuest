@@ -27,7 +27,7 @@
   import { useResourceStore } from '@/stores/ResourceStore'
   import { useGameStore } from '@/stores/GameStore'
 
-  import Flag from '@/models/Flag'
+  import Flag from '@/models/StoryFlag'
 
   import Button from '@/components/Button.vue'
 

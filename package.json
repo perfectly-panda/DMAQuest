@@ -8,7 +8,7 @@
     "test:unit": "vitest --environment jsdom",
     "test:component": "npx cypress open --component",
     "coverage": "vitest run --coverage",
-    "build-only": "vite build",
+    "build": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
@@ -36,6 +36,6 @@
     "typescript": "~4.7.4",
     "vite": "^3.0.9",
     "vitest": "^0.23.0",
-    "vue-tsc": "^0.40.7"
+    "vue-tsc": "^1.0.2"
   }
 }
