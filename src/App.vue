@@ -15,19 +15,16 @@ import TitleBar from './components/TitleBar.vue'
 import Story from './components/story/Story.vue'
 import Game from "./models/Game";
 import { useGameStore } from './stores/GameStore';
-import { useResourceStore } from './stores/ResourceStore';
 
 const gameStore = useGameStore()
-const resourceStore = useResourceStore()
 
-let game = new Game(resourceStore, gameStore)
+let game = new Game()
 game.initialize()
 
-window.addEventListener('focus', () => {
-  console.log('focus')
- // game.stop()
- // game.start()
-})
+if(window.location.href.includes('localhost')){
+  gameStore.flags.globals.push("devMode")
+  gameStore.tabs.options.push("Dev Console")
+}
 
 </script>
 

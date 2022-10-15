@@ -15,10 +15,15 @@
       :class="'available-action'"
       @click="checkLine"
     ></Button>
-    <Button v-if="gameStore.checkStoryFlag('chairs')"
+    <Button v-if="gameStore.checkStoryFlag('chairs') && !gameStore.checkStoryFlag('battery')"
       :text="'Sit down'"
       :class="resourceStore.chairs.count >= 1 ? 'available-action': 'unavailable-action'"
-      @click="checkLine"
+      @click="sitDown"
+    ></Button>
+    <Button v-if="gameStore.checkStoryFlag('battery')"
+      :text="'Charge phone'"
+      :class="resourceStore.battery.count < 100 ? 'available-action': 'unavailable-action'"
+      @click="chargePhone"
     ></Button>
   </div>
 </template>
@@ -46,5 +51,14 @@
   function checkLine() {
     gameStore.addStoryFlag(new Flag('people', 2))
     resourceStore.people.perSecond = .05
+  }
+
+  function sitDown() {
+    gameStore.addStoryFlag(new Flag('battery', 3))
+    resourceStore.battery.perSecond = -0.1
+  }
+
+  function chargePhone() {
+    resourceStore.battery.addStatic(10)
   }
 </script>

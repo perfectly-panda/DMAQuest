@@ -1,16 +1,21 @@
 import Resource from './Resource';
+import { useResourceStore } from '../stores/ResourceStore';
+import { useGameStore } from '../stores/GameStore';
+import StoryFlag from './StoryFlag';
 export default class {
   private _running = false
   private _currentTick = Date.now()
   private _ticker: any
   private _totalTicks = 0
 
-  private _resourceStore: any
-  private _gameStore: any
+  private _resourceStore = useResourceStore()
+  private _gameStore = useGameStore()
 
-  constructor(resourceStore: any, gameStore: any) {
-    this._resourceStore = resourceStore
-    this._gameStore = gameStore
+  temp = false
+
+  constructor(resourceStore: any = null, gameStore: any = null) {
+    this._resourceStore = resourceStore? resourceStore : this._resourceStore
+    this._gameStore = gameStore? gameStore : this._gameStore 
   }
 
   get totalTicks(): number {
@@ -20,6 +25,10 @@ export default class {
     return this._resourceStore
   }
 
+  get gameStore(): any {
+    return this._gameStore
+  }
+
   private _runTick(): void {
     if(this._running) {
       const tick = Date.now()
@@ -27,11 +36,31 @@ export default class {
       this._totalTicks += ticks
       this._currentTick = tick
 
+      this._unlockChecks()
+      this._applyModifiers()
+
       for(const resource of Object.values(this._resourceStore)) {
         if(resource instanceof Resource) {
            resource.increment(ticks)
         }
       }
+    }
+  }
+
+  private _unlockChecks(): void {
+    if(!this._gameStore.checkStoryFlag('portal') &&
+      this._gameStore.checkStoryFlag('battery') &&
+      this._resourceStore.battery.count >= 99) 
+    {
+      this.temp = true
+      this._gameStore.addStoryFlag(new StoryFlag('portal', 4))
+      this._resourceStore.portal.addStatic(1)
+    }
+  }
+
+  private _applyModifiers(): void {
+    if(this._resourceStore.battery.count <= 0) {
+      this._resourceStore.portal.modifier = 0
     }
   }
 
@@ -52,5 +81,12 @@ export default class {
 
   initialize(): void {
     this.start()
+  }
+
+  runTick(count = 1): void {
+    this._running = true
+    for(let i = 0; i < count; i++) {
+      this._runTick()
+    }
   }
 }

@@ -15,8 +15,11 @@ export const useStoryStore = defineStore('story', {
         "chairs left.",
         "Chairs:"
       ]),
-    people: new StoryText(["I tried to count how many people are in line, but there's at least", 'people.', "People:" ]),
-    battery: new StoryText(["I'm starting to get worried about my phone battery. It's at", '%.', "Battery:" ]),
+    people: new StoryText(["I tried to count how many people are in line, but there's at least ", ' people.', "People:" ]),
+    battery: new StoryText(["I'm starting to get worried about my phone battery. It's at ", '%.', "Battery:" ]),
+    portal: new StoryText(["All of a sudden, ", " portals opened up in the waiting room!", "Portal:" ]),
+    wizard: new StoryText(["", " wizards came through the portal", "Wizards:" ]),
+    chipmunk: new StoryText(["Closely followed by ", " chipmunks?", "Chipmunks:" ]),
   }),
   getters: {
   },

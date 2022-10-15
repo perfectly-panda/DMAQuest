@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia'
 import type StoryFlag from '@/models/StoryFlag'
 import type { IStoryFlag } from '@/types/IStore'
+import type { IGameStore} from '../types/IGameStore';
 
 export const useGameStore = defineStore('game', {
-  state: () => ({
+  state: (): IGameStore => ({
     tabs: {
       currentTab: 'Story',
-      options: ['Story'],
+      options: ['Story', 'Upgrades'],
     },
     flags: {
       globals: Array<string>(),

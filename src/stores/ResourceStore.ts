@@ -9,6 +9,9 @@ export const useResourceStore = defineStore('resources', {
     chairs: new Resource(1, 'Chairs', 'Chairs left in the waiting room'),
     people: new Resource(2, 'People', 'People in line'),
     battery: new Resource(3, 'Battery', 'Phone battery'),
+    portal: new Resource(4, 'Portal', 'Where did this come from?'),
+    wizard: new Resource(5, 'Wizard', 'A wizard?'),
+    chipmunk: new Resource(6, 'Chipmunk', 'So cute!'),
   }),
   getters: {
   },

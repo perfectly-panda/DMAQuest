@@ -5,6 +5,7 @@
       :content="storyStore[storyItem].en"
       :shortVersion="gameStore.flags.globals.includes('hideText')"
       :resValue="resourceStore[storyItem].count"
+      :maxValue="resourceStore[storyItem].max"
     ></Log>
   </div>
   <div id="intro">
@@ -13,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useResourceStore, type ResourceStore } from '@/stores/ResourceStore'
+  import { useResourceStore} from '@/stores/ResourceStore'
   import { useGameStore } from '@/stores/GameStore'
   import { useStoryStore } from '@/stores/StoryStore'
 

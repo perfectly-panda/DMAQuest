@@ -7,9 +7,12 @@ type IStore<T> = {
   chairs: T,
   people: T,
   battery: T,
+  portal: T,
+  wizard: T,
+  chipmunk: T,
 }
 
 export type IResourceStore = IStore<Resource>
 export type IStoryStore = IStore<StoryText>
 
-export type IStoryFlag = "intro" | "waitTime" | "chairs" | "people" | "battery"
+export type IStoryFlag = keyof IStore<object>
