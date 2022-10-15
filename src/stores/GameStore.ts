@@ -22,8 +22,8 @@ export const useGameStore = defineStore('game', {
     }
   },
   actions: {
-    addStoryFlag(flag: Flag) {
-      if(!this.flags.story.find((i: Flag) => i.text == flag.text)){
+    addStoryFlag(flag: StoryFlag) {
+      if(!this.flags.story.find((i: StoryFlag) => i.text == flag.text)){
         this.flags.story.push(flag)
         this.flags.story.sort((a, b) => b.order - a.order)
       }

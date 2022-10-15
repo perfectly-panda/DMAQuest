@@ -1,7 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "cypress/components/Sidebar.cy.ts"],
-  "exclude": ["node_modules", "dist", "spec/**/*.spec.ts"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist", "spec/**/*.spec.ts", "cypress/**/*.cy.ts"],
   "compilerOptions": {
     "composite": true,
     "types": ["node"],

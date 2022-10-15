@@ -1,4 +1,3 @@
-import type { ResourceStore } from '../types/IStore';
 import Resource from './Resource';
 export default class {
   private _running = false
@@ -6,10 +5,10 @@ export default class {
   private _ticker: any
   private _totalTicks = 0
 
-  private _resourceStore: ResourceStore
+  private _resourceStore: any
   private _gameStore: any
 
-  constructor(resourceStore: ResourceStore, gameStore: any) {
+  constructor(resourceStore: any, gameStore: any) {
     this._resourceStore = resourceStore
     this._gameStore = gameStore
   }
