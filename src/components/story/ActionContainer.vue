@@ -1,11 +1,13 @@
 <template>
     <div id="buttons">
     <Button v-if="!gameStore.checkStoryFlag('waitTime')"
+      id="waitTime"
       :text="'Wait'"
       :class="'available-action'"
       @click="wait"
       ></Button>
     <Button v-if="gameStore.checkStoryFlag('waitTime')"
+      id="findChair"
       :text="'Look for a chair'"
       :class="'available-action'"
       @click="findChair"

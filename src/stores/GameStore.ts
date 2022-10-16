@@ -7,7 +7,7 @@ export const useGameStore = defineStore('game', {
   state: (): IGameStore => ({
     tabs: {
       currentTab: 'Story',
-      options: ['Story', 'Upgrades'],
+      options: ['Story'],
     },
     flags: {
       globals: Array<string>(),

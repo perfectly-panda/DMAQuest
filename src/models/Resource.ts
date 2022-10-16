@@ -13,7 +13,7 @@ export default class {
   modifier = 1
   purchaseCost = 1
 
-  constructor(id: number = 0, name: IStoryFlag = 'intro', description: string = '', perSecond: number = 0, applyModifiers: boolean = true) {
+  constructor(id: number = 0, name: string = 'intro', description: string = '', perSecond: number = 0, applyModifiers: boolean = true) {
     id = id
     name = name
     description = description

@@ -1,10 +1,8 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createTestingPinia } from '@pinia/testing'
 import Game from '@/models/Game'
-import { useResourceStore } from '../../src/stores/ResourceStore';
-import { useGameStore } from '../../src/stores/GameStore';
 import StoryFlag from '@/models/StoryFlag';
+import { createGameStore, createResourceStore } from '../storeHelper';
 
 
 describe('Game model', () => {
@@ -45,20 +43,4 @@ describe('Game model', () => {
 
 const sleep = (ms: number): Promise<void> =>
   new Promise((resolve) => setTimeout(resolve, ms))
-
-function createResourceStore() {
-  const pinia = createTestingPinia({ fakeApp: true, createSpy: vi.fn,})
-  return useResourceStore(pinia)
-}
-
-function createGameStore() {
-  const pinia = createTestingPinia({ fakeApp: true, createSpy: vi.fn,})
-  const store =  useGameStore(pinia)
-
-  store.addStoryFlag = function(flag: StoryFlag) {
-    this.flags.story.push(flag)
-  }
-
-  return store
-}
 
