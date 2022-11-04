@@ -1,20 +1,29 @@
 
 <template>
+  <div>
   <Sidebar
     class="sidebar"
   />
   <div class="main">
     <TitleBar />
     <Story v-if="gameStore.tabs.currentTab === 'Story'"/>
+    <Phone v-if="gameStore.tabs.currentTab === 'Phone'"/>
+
+    <DevConsole v-if="gameStore.tabs.currentTab === 'Dev Console'"
+      :game="game"/>
+  </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import Sidebar from './components/Sidebar.vue'
 import TitleBar from './components/TitleBar.vue'
-import Story from './components/story/Story.vue'
 import Game from "./models/Game";
 import { useGameStore } from './stores/GameStore';
+
+import Story from './components/story/Story.vue'
+import DevConsole from './components/DevConsole.vue'
+import Phone from './components/phone/Phone.vue'
 
 const gameStore = useGameStore()
 

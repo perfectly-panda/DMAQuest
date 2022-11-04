@@ -20,6 +20,8 @@ export const useStoryStore = defineStore('story', {
     portal: new StoryText(["All of a sudden, ", " portals opened up in the waiting room!", "Portal:" ]),
     wizard: new StoryText(["", " wizards came through the portal", "Wizards:" ]),
     chipmunk: new StoryText(["Closely followed by ", " chipmunks?", "Chipmunks:" ]),
+    cash: new StoryText(["I have ", " dollars now.", "Cash:" ]),
+    crypto: new StoryText(["I have ", " crypto now.", "Crypto:" ]),
   }),
   getters: {
   },

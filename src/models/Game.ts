@@ -1,4 +1,4 @@
-import Resource from './Resource';
+import { Resource } from './Resource';
 import { useResourceStore } from '../stores/ResourceStore';
 import { useGameStore } from '../stores/GameStore';
 import StoryFlag from './StoryFlag';
@@ -23,6 +23,9 @@ export default class {
   }
   get resourceStore(): any {
     return this._resourceStore
+  }
+  get running(): boolean {
+    return this._running
   }
 
   get gameStore(): any {

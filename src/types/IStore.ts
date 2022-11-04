@@ -1,4 +1,4 @@
-import type Resource from "@/models/Resource"
+import type { Resource } from "@/models/Resource"
 import type StoryText from "@/models/StoryText"
 
 type IStore<T> = {
@@ -10,6 +10,8 @@ type IStore<T> = {
   portal: T,
   wizard: T,
   chipmunk: T,
+  cash: T,
+  crypto: T,
 }
 
 export type IResourceStore = IStore<Resource>

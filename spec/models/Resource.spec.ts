@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import Resource from '@/models/Resource'
+import { Resource } from '@/models/Resource'
 
 describe('Resource model', () => {
 

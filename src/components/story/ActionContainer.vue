@@ -57,6 +57,7 @@
 
   function sitDown() {
     gameStore.addStoryFlag(new Flag('battery', 3))
+    gameStore.tabs.options.push("Phone")
     resourceStore.battery.perSecond = -0.1
   }
 

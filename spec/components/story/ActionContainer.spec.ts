@@ -4,7 +4,7 @@ import { mount } from "@vue/test-utils";
 import { createGameStore, createResourceStore } from '../../storeHelper';
 import ActionContainer from '@/components/story/ActionContainer.vue'
 import StoryFlag from '../../../src/models/StoryFlag';
-import Resource from '../../../src/models/Resource'
+import { Resource } from '../../../src/models/Resource'
 
 
 describe('ActionContainer', function () {

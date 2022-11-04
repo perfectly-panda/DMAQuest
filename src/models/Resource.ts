@@ -1,8 +1,14 @@
-import type { IStoryFlag } from '@/types/IStore';
-export default class {
-  readonly id = 0
-  readonly name = ''
-  readonly description = ''
+export interface newResource {id?: number, 
+  name?: string, 
+  description?: string, 
+  perSecond?: number,
+  startingValue?: number,
+  applyModifiers?: boolean}
+
+export class Resource {
+  readonly id: number
+  readonly name: string
+  readonly description: string
 
   private _count = 0
   private _perSecond = 0
@@ -13,11 +19,18 @@ export default class {
   modifier = 1
   purchaseCost = 1
 
-  constructor(id: number = 0, name: string = 'intro', description: string = '', perSecond: number = 0, applyModifiers: boolean = true) {
-    id = id
-    name = name
-    description = description
+  constructor({id = 0, 
+    name = 'intro', 
+    description = '', 
+    perSecond = 0,
+    startingValue = 0,
+    applyModifiers = true
+  } : newResource) {
+    this.id = id
+    this.name = name
+    this.description = description
     this._perSecond = perSecond
+    this._count = startingValue
     this.applyModifiers = applyModifiers
   }
 
