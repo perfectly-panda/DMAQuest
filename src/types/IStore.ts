@@ -12,6 +12,7 @@ type IStore<T> = {
   chipmunk: T,
   cash: T,
   crypto: T,
+  memory: T,
 }
 
 export type IResourceStore = IStore<Resource>

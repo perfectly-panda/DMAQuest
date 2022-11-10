@@ -14,6 +14,7 @@ export const useResourceStore = defineStore('resources', {
     chipmunk: new Resource({id:6, name:'Chipmunk', description:'So cute!'}),
     cash: new Resource({id: 7, name: 'Cash', description: 'Meow', startingValue: 20}),
     crypto: new Resource({id:8, name:'Crypto', description:'Much rich. So wow.'}),
+    memory: new Resource({id:9, name:'Memory', description:'How much memory does your phone have?', startingValue: .5, max: 1}),
   }),
   getters: {
     resources(state): Array<Resource> {

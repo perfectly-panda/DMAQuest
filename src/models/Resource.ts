@@ -3,7 +3,8 @@ export interface newResource {id?: number,
   description?: string, 
   perSecond?: number,
   startingValue?: number,
-  applyModifiers?: boolean}
+  applyModifiers?: boolean,
+  max?: number,}
 
 export class Resource {
   readonly id: number
@@ -15,7 +16,7 @@ export class Resource {
   private applyModifiers = true
 
   min = 0
-  max = 100
+  max: number
   modifier = 1
   purchaseCost = 1
 
@@ -24,7 +25,8 @@ export class Resource {
     description = '', 
     perSecond = 0,
     startingValue = 0,
-    applyModifiers = true
+    applyModifiers = true,
+    max = 100
   } : newResource) {
     this.id = id
     this.name = name
@@ -32,10 +34,15 @@ export class Resource {
     this._perSecond = perSecond
     this._count = startingValue
     this.applyModifiers = applyModifiers
+    this.max = max
   }
 
   get count() {
     return this._count
+  }
+
+  get displayCount(): string {
+    return this.count.toFixed(2)
   }
 
   set perSecond(count: number) {

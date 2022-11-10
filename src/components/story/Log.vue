@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
   import Value from '@/components/story/Value.vue'
-  import { defineProps, computed } from 'vue';
+  import { computed } from 'vue';
 
   const props = defineProps({
     tag: String,

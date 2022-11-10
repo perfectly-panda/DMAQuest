@@ -8,7 +8,6 @@
   <span>Time: {{resourceStore.waitTime.count}}</span>
 </template>
 <script setup lang="ts">
-  import { defineProps } from 'vue';
   import { useResourceStore} from '@/stores/ResourceStore'
   import { useGameStore } from '@/stores/GameStore'
   import { useStoryStore } from '@/stores/StoryStore'
