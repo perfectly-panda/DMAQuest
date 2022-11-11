@@ -23,6 +23,7 @@ export const useStoryStore = defineStore('story', {
     cash: new StoryText(["I have ", " dollars now.", "Cash:" ]),
     crypto: new StoryText(["I have ", " crypto now.", "Crypto:" ]),
     memory: new StoryText(["I have ", " GB of memory available.", "Memory:" ]),
+    gold: new StoryText([]),
   }),
   getters: {
   },
