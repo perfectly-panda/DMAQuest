@@ -21,15 +21,8 @@ export default class {
   get totalTicks(): number {
     return this._totalTicks 
   }
-  get resourceStore(): any {
-    return this._resourceStore
-  }
   get running(): boolean {
     return this._running
-  }
-
-  get gameStore(): any {
-    return this._gameStore
   }
 
   private _runTick(): void {
@@ -55,7 +48,6 @@ export default class {
       this._gameStore.checkStoryFlag('battery') &&
       this._resourceStore.battery.count >= 99) 
     {
-      this.temp = true
       this._gameStore.addStoryFlag(new StoryFlag('portal', 4))
       this._resourceStore.portal.addStatic(1)
     }
@@ -65,6 +57,19 @@ export default class {
     if(this._resourceStore.battery.count <= 0) {
       this._resourceStore.portal.modifier = 0
     }
+
+    const chipmunks = this._resourceStore.chipmunk.count
+    const wizards = this._resourceStore.wizard.count
+    this._resourceStore.wizard.modifier = this._resourceStore.portal.count / 10
+    this._resourceStore.wizard.addStatic(chipmunks * -.1)
+    this._resourceStore.chipmunk.modifier = this._resourceStore.portal.count / 10
+    this._resourceStore.chipmunk.addStatic(wizards * -.1)
+  }
+
+  private _save(): void {
+  }
+
+  private _load(): void {
   }
 
   start(): void {

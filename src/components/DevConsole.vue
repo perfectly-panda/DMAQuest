@@ -5,7 +5,14 @@
     <button @click="game.start()">Start</button>
   </p>
 
-  <span>Time: {{resourceStore.waitTime.count}}</span>
+  <select v-model="tabToActivate">
+    <option v-for="tab in tabs" :value="tab">{{ tab }}</option>
+  </select>
+  <button @click="activateTab(tabToActivate)">Activate tab</button>
+
+  <p>
+    <span>Time: {{resourceStore.waitTime.count}}</span>
+  </p>
 </template>
 <script setup lang="ts">
   import { useResourceStore} from '@/stores/ResourceStore'
@@ -14,15 +21,23 @@
   import Game from '@/models/Game';
 
   const props = defineProps({
-    game: Game
+    game: { type: Game, required: true}
   })
 
   const gameStore = useGameStore()
   const storyStore = useStoryStore()
   const resourceStore = useResourceStore()
 
+  const tabs = ["Story", "Phone", "Village", "Options", "Dev Console"]
+
+  let tabToActivate = "Story"
+
   function showAllTabs() {
-    gameStore.tabs.options = ["Story", "Phone", "Options", "Dev Console"]
+    gameStore.tabs.options = tabs
+  }
+
+  function activateTab(tab) {
+    gameStore.addTab(tab)
   }
 
 </script>

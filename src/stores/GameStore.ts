@@ -28,6 +28,11 @@ export const useGameStore = defineStore('game', {
         this.flags.story.push(flag)
         this.flags.story.sort((a, b) => b.order - a.order)
       }
+    },
+    addTab(tab: string) {
+      if(!this.tabs.options.includes(tab)){
+        this.tabs.options.push(tab)
+      }
     }
   }
 })

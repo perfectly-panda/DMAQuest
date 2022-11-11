@@ -4,8 +4,14 @@
       <Button
         :text="tab"
         :state="tab === gameStore.tabs.currentTab ? 'active' : 'default'"
-      />
+      ></Button>
     </div>
+
+    <Button v-if="local"
+      :text="'Dev Console'"
+      @click="gameStore.tabs.currentTab = 'Dev Console'">
+    </Button>
+    
   </nav>  
 </template>
 
@@ -20,6 +26,8 @@
   function selectTab(tab: string) {
     gameStore.tabs.currentTab = tab
   }
+
+  const local = window.location.href.includes('localhost')
 </script>
 
 <style scoped>

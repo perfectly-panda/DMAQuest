@@ -8,6 +8,7 @@
     <TitleBar />
     <Story v-if="gameStore.tabs.currentTab === 'Story'"/>
     <Phone v-if="gameStore.tabs.currentTab === 'Phone'"/>
+    <Village v-if="gameStore.tabs.currentTab === 'Village'"/>
 
     <DevConsole v-if="gameStore.tabs.currentTab === 'Dev Console'"
       :game="game"/>
@@ -24,6 +25,7 @@ import { useGameStore } from './stores/GameStore';
 import Story from './components/story/Story.vue'
 import DevConsole from './components/DevConsole.vue'
 import Phone from './components/phone/Phone.vue'
+import Village from './components/village/Village.vue'
 
 const gameStore = useGameStore()
 
@@ -32,7 +34,6 @@ game.initialize()
 
 if(window.location.href.includes('localhost')){
   gameStore.flags.globals.push("devMode")
-  gameStore.tabs.options.push("Dev Console")
 }
 
 </script>
