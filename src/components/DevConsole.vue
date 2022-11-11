@@ -36,7 +36,7 @@
     gameStore.tabs.options = tabs
   }
 
-  function activateTab(tab) {
+  function activateTab(tab: string) {
     gameStore.addTab(tab)
   }
 
