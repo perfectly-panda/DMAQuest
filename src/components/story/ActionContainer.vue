@@ -4,48 +4,48 @@
       id="waitTime"
       :text="'Wait'"
       :class="'available-action'"
-      @click="wait"
+      :action="wait"
       ></Button>
     <Button v-if="gameStore.checkStoryFlag('waitTime')"
       id="findChair"
       :text="'Look for a chair'"
       :class="'available-action'"
-      @click="findChair"
+      :action="findChair"
     ></Button>
     <Button v-if="!gameStore.checkStoryFlag('people')"
       :text="'Check the line'"
       :class="'available-action'"
-      @click="checkLine"
+      :action="checkLine"
     ></Button>
     <Button v-if="gameStore.checkStoryFlag('chairs') && !gameStore.checkStoryFlag('battery')"
       :text="'Sit down'"
       :class="resourceStore.chairs.count >= 1 ? 'available-action': 'unavailable-action'"
-      @click="sitDown"
+      :action="sitDown"
     ></Button>
     <Button v-if="gameStore.checkStoryFlag('battery')"
       :text="'Charge phone'"
       :class="resourceStore.battery.count < 100 ? 'available-action': 'unavailable-action'"
-      @click="chargePhone"
+      :action="chargePhone"
     ></Button>
     <Button v-if="gameStore.checkStoryFlag('portal') && (!gameStore.checkStoryFlag('wizard') || !gameStore.checkStoryFlag('chipmunk'))"
       :text="'Portals?!?!?'"
       :class="resourceStore.battery.count < 100 ? 'available-action': 'unavailable-action'"
-      @click="checkPortals"
+      :action="checkPortals"
     ></Button>
     <Button v-if="gameStore.checkStoryFlag('wizard')"
       :text="'Help the wizards.'"
       :class="resourceStore.battery.count < 100 ? 'available-action': 'unavailable-action'"
-      @click="helpWizards"
+      :action="helpWizards"
     ></Button>
     <Button v-if="gameStore.checkStoryFlag('chipmunk')"
       :text="'Help the chipmunks.'"
       :class="resourceStore.battery.count < 100 ? 'available-action': 'unavailable-action'"
-      @click="helpChipmunks"
+      :action="helpChipmunks"
     ></Button>
     <Button v-if="!gameStore.tabs.options.includes('Village') && gameStore.checkStoryFlag('portal')"
       :text="'Go through the portal.'"
       :class="resourceStore.battery.count < 100 ? 'available-action': 'unavailable-action'"
-      @click="goThroughPortal"
+      :action="goThroughPortal"
     ></Button>
   </div>
 </template>

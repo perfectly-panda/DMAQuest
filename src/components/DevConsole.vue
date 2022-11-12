@@ -1,14 +1,14 @@
 <template>
   <p><button @click="showAllTabs">Show all tabs</button></p>
   <p>
-    <button @click="game.stop()">Pause</button>
-    <button @click="game.start()">Start</button>
+    <button :action="game.stop()">Pause</button>
+    <button :action="game.start()">Start</button>
   </p>
 
   <select v-model="tabToActivate">
     <option v-for="tab in tabs" :value="tab">{{ tab }}</option>
   </select>
-  <button @click="activateTab(tabToActivate)">Activate tab</button>
+  <button :action="activateTab(tabToActivate)">Activate tab</button>
 
   <p>
     <span>Time: {{resourceStore.waitTime.count}}</span>

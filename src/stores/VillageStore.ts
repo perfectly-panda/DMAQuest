@@ -29,6 +29,29 @@ export const useVillageStore = defineStore('villageStore', {
       if (building && building.canRemove) {
         this.grid[x][y] = undefined
       }
+    },
+    loadSaveData (data: any) {
+      if(data) {
+        if(data.gridHeight) {
+          this.gridHeight = data.gridHeight
+        }
+        if(data.gridWidth) {
+          this.gridWidth = data.gridWidth
+        }
+        if(data.grid) {
+          for(const row of data.grid) {
+            for(const building of row) {
+              const buildingData = this.getBuilding(building.x, building.y)
+              if(buildingData) {
+                buildingData.load(building)
+              }
+            }
+          }
+        }
+        if(data.selectedBuilding) {
+          this.selectedBuilding = data.selectedBuilding
+        }
+      }
     }
   }
 })

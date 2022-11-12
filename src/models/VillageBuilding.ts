@@ -8,4 +8,9 @@ export class VillageBuilding {
     this.location = location
     this.canRemove = canRemove
   }
+
+  load(building: VillageBuilding): void {
+    this.canRemove = building.canRemove
+    this.name = building.name
+  }
 }

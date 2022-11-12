@@ -4,7 +4,9 @@ export interface newResource {id?: number,
   perSecond?: number,
   startingValue?: number,
   applyModifiers?: boolean,
-  max?: number,}
+  max?: number,
+  min?: number,
+  visible?: boolean,}
 
 export class Resource {
   readonly id: number
@@ -19,6 +21,7 @@ export class Resource {
   max: number
   modifier = 1
   purchaseCost = 1
+  visible = false
 
   constructor({id = 0, 
     name = 'intro', 
@@ -26,7 +29,9 @@ export class Resource {
     perSecond = 0,
     startingValue = 0,
     applyModifiers = true,
-    max = 100
+    max = 100,
+    min = 0,
+    visible = false,
   } : newResource) {
     this.id = id
     this.name = name
@@ -35,6 +40,8 @@ export class Resource {
     this._count = startingValue
     this.applyModifiers = applyModifiers
     this.max = max
+    this.min = min
+    this.visible = visible
   }
 
   get count() {
@@ -61,5 +68,15 @@ export class Resource {
   _updateCount(value: number): void {
     const temp = Math.min(this.max, value)
     this._count = Math.max(this.min, temp)
+  }
+
+  load(data: any): void {
+    this._count = data._count
+    this._perSecond = data._perSecond
+    this.modifier = data.modifier
+    this.min = data.min
+    this.max = data.max
+    this.applyModifiers = data.applyModifiers
+    this.purchaseCost = data.purchaseCost
   }
 }

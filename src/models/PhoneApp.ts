@@ -37,4 +37,10 @@ export class PhoneApp {
   get appSize(): string {
     return (this.space * 1024).toFixed(0) + ' MB'
   }
+
+  load(app: PhoneApp): void {
+    this.installed = app.installed
+    this.available = app.available
+    this.canRemove = app.canRemove
+  }
 }

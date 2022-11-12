@@ -30,7 +30,9 @@ import Village from './components/village/Village.vue'
 const gameStore = useGameStore()
 
 let game = new Game()
-game.initialize()
+setTimeout(() => {
+  game.initialize()
+}, 1000)
 
 if(window.location.href.includes('localhost')){
   gameStore.flags.globals.push("devMode")

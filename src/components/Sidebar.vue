@@ -4,12 +4,13 @@
       <Button
         :text="tab"
         :state="tab === gameStore.tabs.currentTab ? 'active' : 'default'"
+        :action="() => {selectTab(tab)}"
       ></Button>
     </div>
 
     <Button v-if="local"
       :text="'Dev Console'"
-      @click="gameStore.tabs.currentTab = 'Dev Console'">
+      :action="() => {gameStore.tabs.currentTab = 'Dev Console'}">
     </Button>
     
   </nav>  

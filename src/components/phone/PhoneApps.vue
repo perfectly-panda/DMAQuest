@@ -1,6 +1,9 @@
 <template>
 <div>
   <h3>Apps</h3>
+  <div v-if="appStore.activeApp">
+    <h4>{{ appStore.activeApp.name}}</h4>
+  </div>
   <h4>Installed</h4>
   <div class="appsContainer">
     <AppContainer  v-for="app in appStore.installedApps"

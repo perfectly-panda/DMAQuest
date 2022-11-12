@@ -4,7 +4,7 @@
     <Button
       :text="'Charge phone'"
       :class="resourceStore.battery.count < 100 ? 'available-action': 'unavailable-action'"
-      @click="chargePhone"
+      :action="chargePhone"
     ></Button>
   </div>
   <span>Space Available: {{resourceStore.memory.displayCount}} GB / {{resourceStore.memory.max}} GB</span>

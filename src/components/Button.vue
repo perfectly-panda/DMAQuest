@@ -1,7 +1,7 @@
 <template>
   <button 
     class="button"
-    @click.native="clicked"
+    @click.stop="() => {action()}"
     :class="state">
     {{text}}
   </button>
@@ -12,6 +12,7 @@
 const props = defineProps({
   text: { type: String, required: true },
   state: { type: String, default: 'default' },
+  action: {type: Function, required: true}
 })
 
 
