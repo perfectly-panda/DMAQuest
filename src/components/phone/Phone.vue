@@ -1,5 +1,5 @@
 <template>
-  <h3>Battery Remaining: {{resourceStore.battery.displayCount}}</h3>
+  <h3>Battery Remaining: {{resourceStore.battery.displayCount}} %</h3>
   <div>
     <Button
       :text="'Charge phone'"

@@ -56,6 +56,15 @@ export class Resource {
     this._perSecond = count
   }
 
+  get perSecond(): string {
+    if(this.applyModifiers) {
+      return (this._perSecond * this.modifier).toFixed(2)
+    }
+    else {
+      return this._perSecond.toFixed(2)
+    }
+  }
+
   increment(ticks: number): void {
     const modifier = this.applyModifiers ? this.modifier : 1
     this._updateCount(this._count + this._perSecond * (ticks / 1000) * modifier)
@@ -78,5 +87,6 @@ export class Resource {
     this.max = data.max
     this.applyModifiers = data.applyModifiers
     this.purchaseCost = data.purchaseCost
+    this.visible = data.visible
   }
 }

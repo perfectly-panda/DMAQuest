@@ -6,8 +6,12 @@ export const useResourceStore = defineStore('resources', {
   state: (): IResourceStore => initialState,
   getters: {
     resources(state): Array<Resource> {
-      return Object.values(state)
-    }
+      return Object.values(state).filter((f) => f instanceof Resource)
+    },
+    visibleResources(state): Array<Resource> {
+      
+      return Object.values(state).filter((f) => f instanceof Resource && f.visible)
+    },
   },
   actions: {
     loadSaveData(data: any) {

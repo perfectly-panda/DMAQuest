@@ -38,8 +38,10 @@ export const useAppStore = defineStore('appStore', {
     },
     removeApp (id: string) {
       const app = this.getApp(id)
+      const resourceStore = useResourceStore()
       if(app && app.canRemove){
         app.installed = false
+        resourceStore.memory.addStatic(app.space)
       }
     },
     loadSaveData (data: any) {
