@@ -7,7 +7,7 @@
   <div class="main">
     <TitleBar />
     <Story v-if="gameStore.tabs.currentTab === 'Story'"/>
-    <Phone v-if="gameStore.tabs.currentTab === 'Phone'"/>
+    <Phone v-if="gameStore.tabs.currentTab === 'Phone'" :game="game"/>
     <Village v-if="gameStore.tabs.currentTab === 'Village'"/>
 
     <DevConsole v-if="gameStore.tabs.currentTab === 'Dev Console'"

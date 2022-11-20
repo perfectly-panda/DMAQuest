@@ -3,6 +3,7 @@
   <h3>Apps</h3>
   <div v-if="appStore.activeApp && appStore.isAppInstalled(appStore.activeApp.id) && appStore.activeApp.id !== 'mystery'">
     <h4>{{ appStore.activeApp.name}}</h4>
+    <a @click.prevent="closeApp">(X) Close App</a>
     <div v-if="appStore.activeApp.id === 'resourceApp'">
       <ResourceMonitor></ResourceMonitor>
     </div>
@@ -32,6 +33,10 @@ import ResourceMonitor from '@/components/phone/ResourceMonitor.vue'
 import Delivery from '@/components/phone/Delivery.vue'
 
 const appStore = useAppStore()
+
+function closeApp() {
+  appStore.activeApp = undefined
+}
 
 </script>
 

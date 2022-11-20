@@ -88,16 +88,16 @@
   function checkPortals() {
     resourceStore.wizard.perSecond = .1
     resourceStore.chipmunk.perSecond = .1
-    gameStore.addStoryFlag(new Flag('wizard', 4))
-    gameStore.addStoryFlag(new Flag('chipmunk', 5))
+    gameStore.addStoryFlag(new Flag('wizard', 5))
+    gameStore.addStoryFlag(new Flag('chipmunk', 6))
   }
 
   function helpWizards() {
-    resourceStore.wizard.perSecond += .01
+    resourceStore.wizard.perSecond = resourceStore.wizard.perSecond + .01
   }
 
   function helpChipmunks() {
-    resourceStore.chipmunk.perSecond += .01
+    resourceStore.chipmunk.perSecond = resourceStore.chipmunk.perSecond + .01
   }
 
   function goThroughPortal() {

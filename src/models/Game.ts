@@ -4,10 +4,7 @@ import { useGameStore } from '../stores/GameStore';
 import { useAppStore } from '@/stores/AppStore';
 import { useVillageStore } from '@/stores/VillageStore';
 
-import { useStorage } from '@vueuse/core'
-
 import StoryFlag from './StoryFlag';
-import type { IResourceStore } from '@/types/IStore';
 export default class {
   private _running = false
   private _currentTick = Date.now()
@@ -23,9 +20,7 @@ export default class {
 
   temp = false
 
-  constructor(resourceStore: any = null, gameStore: any = null) {
-    this._resourceStore = resourceStore? resourceStore : this._resourceStore
-    this._gameStore = gameStore? gameStore : this._gameStore 
+  constructor() {
   }
 
   get totalTicks(): number {
@@ -78,9 +73,9 @@ export default class {
     const chipmunks = this._resourceStore.chipmunk.count
     const wizards = this._resourceStore.wizard.count
     this._resourceStore.wizard.modifier = this._resourceStore.portal.count / 10
-    this._resourceStore.wizard.addStatic(chipmunks * -.1)
+    this._resourceStore.wizard.addStatic(chipmunks * -.01)
     this._resourceStore.chipmunk.modifier = this._resourceStore.portal.count / 10
-    this._resourceStore.chipmunk.addStatic(wizards * -.1)
+    this._resourceStore.chipmunk.addStatic(wizards * -.01)
   }
 
   private _save(): void {
@@ -133,5 +128,19 @@ export default class {
     for(let i = 0; i < count; i++) {
       this._runTick()
     }
+  }
+
+  reset(): void {
+    this.stop()
+    this._resourceStore.$reset()
+    console.log(this._resourceStore.chairs.displayCount)
+    this._gameStore.$reset()
+    this._villageStore.$reset()
+    this._appStore.$reset()
+    this._save()
+    this.start()
+  }
+
+  prestige(): void {
   }
 }

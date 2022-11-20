@@ -54,9 +54,16 @@ export class Resource {
 
   set perSecond(count: number) {
     this._perSecond = count
+    if(isNaN(this._perSecond)) {
+      this._perSecond = 0
+    }
   }
 
-  get perSecond(): string {
+  get perSecond(): number {
+    return this._perSecond
+  }
+
+  get displayPerSecond(): string {
     if(this.applyModifiers) {
       return (this._perSecond * this.modifier).toFixed(2)
     }
@@ -77,6 +84,9 @@ export class Resource {
   _updateCount(value: number): void {
     const temp = Math.min(this.max, value)
     this._count = Math.max(this.min, temp)
+    if(isNaN(this._count)) {
+      this._count = 0
+    }
   }
 
   load(data: any): void {
