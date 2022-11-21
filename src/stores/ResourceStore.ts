@@ -16,13 +16,13 @@ export const useResourceStore = defineStore('resources', {
     crypto: new Resource({id:8, name:'Crypto', description:'Much rich. So wow.'}),
     memory: new Resource({id:9, name:'Memory', description:'How much memory does your phone have?', startingValue: .5, max: 1}),
     gold: new Resource({id:10, name:'Gold Coins', description:'Durable, but heavy.'}),
+    cardboard: new Resource({id:11, name:'Cardboard', description:'Cardboard boxes'}),
   }),
   getters: {
     resources(state): Array<Resource> {
       return Object.values(state).filter((f) => f instanceof Resource)
     },
-    visibleResources(state): Array<Resource> {
-      
+    visibleResources(state): Array<Resource> {   
       return Object.values(state).filter((f) => f instanceof Resource && f.visible)
     },
   },

@@ -14,6 +14,7 @@ type IStore<T> = {
   crypto: T,
   memory: T,
   gold: T,
+  cardboard: T,
 }
 
 export type IResourceStore = IStore<Resource>

@@ -63,6 +63,10 @@ export default class {
       this._gameStore.addStoryFlag(new StoryFlag('portal', 4))
       this._resourceStore.portal.addStatic(1)
     }
+    if(!this._gameStore.checkStoryFlag('cash') && this._appStore.isAppInstalled('delivery')) {
+      this._gameStore.addStoryFlag(new StoryFlag('cash', 2.5))
+      this._resourceStore.cash.visible = true
+    }
   }
 
   private _applyModifiers(): void {

@@ -28,7 +28,7 @@ import type { PhoneApp } from '@/models/PhoneApp'
 import { useAppStore } from '@/stores/AppStore'
 
 import Button from '@/components/Button.vue'
-import { useResourceStore } from '@/stores/ResourceStore';
+import { useResourceStore } from '@/stores/ResourceStore'
 
 const appStore = useAppStore()
 const resourceStore = useResourceStore()
