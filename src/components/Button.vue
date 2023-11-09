@@ -18,7 +18,8 @@ const props = defineProps({
 
 const emit = defineEmits(["click"])
 function clicked() {
-  emit("click")}
+  emit("click")
+}
 
 </script>
 

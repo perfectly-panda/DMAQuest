@@ -1,21 +1,29 @@
-export interface newResource {id?: number, 
+import type { Upgrade } from "./Upgrade"
+import { useUpgradeStore } from '../stores/UpgradeStore';
+
+export interface newResource {
+  id?: number, 
   name?: string, 
   description?: string, 
   perSecond?: number,
   startingValue?: number,
   applyModifiers?: boolean,
+  flipMultipiers?: boolean,
   max?: number,
   min?: number,
-  visible?: boolean,}
+  visible?: boolean,
+}
 
-export class Resource {
+  export class Resource {
   readonly id: number
   readonly name: string
   readonly description: string
 
   private _count = 0
   private _perSecond = 0
-  private applyModifiers = true
+  private _applyModifiers = true
+  private _flipMultipiers = false
+  private _upgradeStore = useUpgradeStore()
 
   min = 0
   max: number
@@ -32,13 +40,15 @@ export class Resource {
     max = 100,
     min = 0,
     visible = false,
+    flipMultipiers = false,
   } : newResource) {
     this.id = id
     this.name = name
     this.description = description
     this._perSecond = perSecond
     this._count = startingValue
-    this.applyModifiers = applyModifiers
+    this._applyModifiers = applyModifiers
+    this._flipMultipiers = flipMultipiers
     this.max = max
     this.min = min
     this.visible = visible
@@ -60,21 +70,31 @@ export class Resource {
   }
 
   get perSecond(): number {
-    return this._perSecond
+    let baseValue = this._perSecond
+    let multiplier = 1
+    const upgrades = this._upgradeStore.getPurchasedUpgrades(this.name)
+    for(let upgrade of upgrades) {
+      if(upgrade.resourceFlatValue > 0) {
+        baseValue += upgrade.resourceFlatValue
+      }
+      if(upgrade.resourceMultiplier > 0) {
+        multiplier += upgrade.resourceMultiplier
+      }
+    }
+
+    if(this._flipMultipiers) {
+      multiplier = 1 / multiplier
+    }
+
+    return baseValue * multiplier
   }
 
   get displayPerSecond(): string {
-    if(this.applyModifiers) {
-      return (this._perSecond * this.modifier).toFixed(2)
-    }
-    else {
-      return this._perSecond.toFixed(2)
-    }
+    return this.perSecond.toFixed(2)
   }
 
   increment(ticks: number): void {
-    const modifier = this.applyModifiers ? this.modifier : 1
-    this._updateCount(this._count + this._perSecond * (ticks / 1000) * modifier)
+    this._updateCount(this._count + this.perSecond * (ticks / 1000))
   }
 
   addStatic(count: number): void {
@@ -95,7 +115,8 @@ export class Resource {
     this.modifier = data.modifier
     this.min = data.min
     this.max = data.max
-    this.applyModifiers = data.applyModifiers
+    this._applyModifiers = data._applyModifiers
+    this._flipMultipiers = data.flipMultipiers
     this.purchaseCost = data.purchaseCost
     this.visible = data.visible
   }

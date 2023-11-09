@@ -34,7 +34,8 @@ setTimeout(() => {
   game.initialize()
 }, 1000)
 
-if(window.location.href.includes('localhost')){
+if(window.location.href.includes('localhost')||
+window.location.href.includes('127.0.0.1')){
   gameStore.flags.globals.push("devMode")
 }
 

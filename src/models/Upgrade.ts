@@ -1,4 +1,3 @@
-import { useResourceStore } from "@/stores/ResourceStore"
 import type { IStoryFlag } from "@/types/IStore"
 
 export interface newUpgrade {
@@ -6,12 +5,13 @@ export interface newUpgrade {
   name: string,
   description: string,
   available?: boolean,
-  cost: number,
-  multiplier?: number,
+  upgradeCost: number,
+  costMultiplier?:number
+  resourceMultiplier?: number
+  resourceFlatValue?: number,
   purchased?: number,
   max?: number,
   costResource: IStoryFlag,
-  apply?: Function,
 }
 
 export type ImprovementType = "perSecond" | "staticValue" | "max" | "min"
@@ -21,34 +21,37 @@ export class Upgrade {
   name: string
   description: string
   available: boolean
-  cost: number
-  multiplier: number
+  upgradeCost: number
+  costMultiplier:number
+  resourceMultiplier: number
+  resourceFlatValue: number
   purchased: number
   max: number
   costResource: IStoryFlag
-  apply: Function
   
   constructor({
     id,
     name,
     description,
     available = false,
-    cost,
-    multiplier = 1.1,
+    upgradeCost,
+    costMultiplier = 1,
+    resourceMultiplier = 0,
+    resourceFlatValue = 0,
     purchased = 0,
-    max = 10,
+    max = 1,
     costResource,
-    apply = () => {},
   } : newUpgrade) {
     this.id = id
     this.name = name
     this.description = description
     this.available = available
-    this.cost = cost
-    this.multiplier = multiplier
+    this.upgradeCost = upgradeCost
+    this.costMultiplier = costMultiplier
+    this.resourceMultiplier = resourceMultiplier
+    this.resourceFlatValue = resourceFlatValue
     this.purchased = purchased
     this.max = max
     this.costResource = costResource
-    this.apply = apply
   }
 }

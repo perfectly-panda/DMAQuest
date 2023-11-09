@@ -25,6 +25,9 @@ export const useResourceStore = defineStore('resources', {
     visibleResources(state): Array<Resource> {   
       return Object.values(state).filter((f) => f instanceof Resource && f.visible)
     },
+    getResourceByName: (state) => (name: string): Resource | undefined => {
+      return Object.values(state).find((f) => f instanceof Resource && f.name === name)
+    },
   },
   actions: {
     loadSaveData(data: any) {

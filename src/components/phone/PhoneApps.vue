@@ -30,7 +30,7 @@
 import { useAppStore } from '@/stores/AppStore'
 import AppContainer from '@/components/phone/AppContainer.vue'
 import ResourceMonitor from '@/components/phone/ResourceMonitor.vue'
-import Delivery from '@/components/phone/Delivery.vue'
+import Delivery from '@/components/phone/apps/DeliveryApp.vue'
 
 const appStore = useAppStore()
 

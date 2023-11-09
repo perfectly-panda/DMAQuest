@@ -28,7 +28,8 @@
     gameStore.tabs.currentTab = tab
   }
 
-  const local = window.location.href.includes('localhost')
+  const local = window.location.href.includes('localhost') ||
+    window.location.href.includes('127.0.0.1')
 </script>
 
 <style scoped>

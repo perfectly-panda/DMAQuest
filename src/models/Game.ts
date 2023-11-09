@@ -24,14 +24,14 @@ export default class {
   }
 
   get totalTicks(): number {
-    return this._totalTicks 
+    return this._totalTicks
   }
   get running(): boolean {
     return this._running
   }
 
   private _runTick(): void {
-    if(this._running) {
+    if (this._running) {
       const tick = Date.now()
       const ticks = tick - this._currentTick
       this._totalTicks += ticks
@@ -39,7 +39,7 @@ export default class {
 
       this._ticksToSave -= ticks
 
-      if(this._ticksToSave <= 0) {
+      if (this._ticksToSave <= 0) {
         this._save()
         this._ticksToSave = this._saveInterval
       }
@@ -47,30 +47,29 @@ export default class {
       this._unlockChecks()
       this._applyModifiers()
 
-      for(const resource of Object.values(this._resourceStore)) {
-        if(resource instanceof Resource) {
-           resource.increment(ticks)
+      for (const resource of Object.values(this._resourceStore)) {
+        if (resource instanceof Resource) {
+          resource.increment(ticks)
         }
       }
     }
   }
 
   private _unlockChecks(): void {
-    if(!this._gameStore.checkStoryFlag('portal') &&
+    if (!this._gameStore.checkStoryFlag('portal') &&
       this._gameStore.checkStoryFlag('battery') &&
-      this._resourceStore.battery.count >= 99) 
-    {
+      this._resourceStore.battery.count >= 99) {
       this._gameStore.addStoryFlag(new StoryFlag('portal', 4))
       this._resourceStore.portal.addStatic(1)
     }
-    if(!this._gameStore.checkStoryFlag('cash') && this._appStore.isAppInstalled('delivery')) {
+    if (!this._gameStore.checkStoryFlag('cash') && this._appStore.isAppInstalled('delivery')) {
       this._gameStore.addStoryFlag(new StoryFlag('cash', 2.5))
       this._resourceStore.cash.visible = true
     }
   }
 
   private _applyModifiers(): void {
-    if(this._resourceStore.battery.count <= 0) {
+    if (this._resourceStore.battery.count <= 0) {
       this._resourceStore.portal.modifier = 0
     }
 
@@ -97,8 +96,8 @@ export default class {
   private _load(): void {
     console.log("loading game...")
     const save = localStorage.getItem('save')
-    if(save){
-    const saveData = JSON.parse(save)
+    if (save) {
+      const saveData = JSON.parse(save)
       this._resourceStore.loadSaveData(saveData.resources)
       this._gameStore.$patch(saveData.game)
       this._villageStore.$patch(saveData.village)
@@ -111,7 +110,7 @@ export default class {
     this._running = true
     this._currentTick = Date.now()
 
-    if(!this._ticker) {
+    if (!this._ticker) {
       this._ticker = setInterval(this._runTick.bind(this), 250)
     }
   }
@@ -129,7 +128,7 @@ export default class {
 
   runTick(count = 1): void {
     this._running = true
-    for(let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       this._runTick()
     }
   }
