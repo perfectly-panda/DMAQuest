@@ -1,7 +1,7 @@
 <template>
   <button 
     class="button"
-    @click.stop="() => {action()}"
+    @click.stop="() => { action()}"
     :class="state">
     {{text}}
   </button>

@@ -3,6 +3,7 @@
     <div v-for="upgrade in upgradeStore.getAvailableUpgrades()" :key="upgrade.id">
       <UpgradeItem 
         :upgrade="upgrade"
+        :actionable="true"
       >
       </UpgradeItem>
     </div>
@@ -10,6 +11,7 @@
     <div v-for="upgrade in upgradeStore.getPurchasedUpgrades('all')" :key="upgrade.id">
       <UpgradeItem 
         :upgrade="upgrade"
+        :actionable="false"
       >
       </UpgradeItem>
     </div>

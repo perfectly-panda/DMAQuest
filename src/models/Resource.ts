@@ -1,8 +1,9 @@
 import type { Upgrade } from "./Upgrade"
+import type { iStoryFlag } from "./StoryFlag"
 import { useUpgradeStore } from '../stores/UpgradeStore';
 
 export interface newResource {
-  id?: number, 
+  id: iStoryFlag, 
   name?: string, 
   description?: string, 
   perSecond?: number,
@@ -15,7 +16,7 @@ export interface newResource {
 }
 
   export class Resource {
-  readonly id: number
+  readonly id: iStoryFlag
   readonly name: string
   readonly description: string
 
@@ -24,14 +25,14 @@ export interface newResource {
   private _applyModifiers = true
   private _flipMultipiers = false
   private _upgradeStore = useUpgradeStore()
+  private _max = 100
 
   min = 0
-  max: number
   modifier = 1
   purchaseCost = 1
   visible = false
 
-  constructor({id = 0, 
+  constructor({id, 
     name = 'intro', 
     description = '', 
     perSecond = 0,
@@ -49,7 +50,7 @@ export interface newResource {
     this._count = startingValue
     this._applyModifiers = applyModifiers
     this._flipMultipiers = flipMultipiers
-    this.max = max
+    this._max = max
     this.min = min
     this.visible = visible
   }
@@ -72,13 +73,12 @@ export interface newResource {
   get perSecond(): number {
     let baseValue = this._perSecond
     let multiplier = 1
-    const upgrades = this._upgradeStore.getPurchasedUpgrades(this.name)
-    for(let upgrade of upgrades) {
-      if(upgrade.resourceFlatValue > 0) {
-        baseValue += upgrade.resourceFlatValue
+    for(let upgrade of this.upgrades) {
+      if(upgrade.resultType === 'flatPerSecond') {
+        baseValue += upgrade.resultValue
       }
-      if(upgrade.resourceMultiplier > 0) {
-        multiplier += upgrade.resourceMultiplier
+      if(upgrade.resultType === 'percentPerSecond') {
+        multiplier += upgrade.resultValue
       }
     }
 
@@ -91,6 +91,24 @@ export interface newResource {
 
   get displayPerSecond(): string {
     return this.perSecond.toFixed(2)
+  }
+
+  get max(): number {
+    let baseValue = this._max
+    let multiplier = 1
+    for(let upgrade of this.upgrades) {
+      if(upgrade.resultType === 'flatMax') {
+        baseValue += upgrade.resultValue
+      }
+      if(upgrade.resultType === 'percentMax') {
+        multiplier += upgrade.resultValue
+      }
+    }
+    return baseValue * multiplier
+  }
+
+  get upgrades(): Array<Upgrade> {
+    return this._upgradeStore.getPurchasedUpgrades(this.id)
   }
 
   increment(ticks: number): void {
@@ -114,7 +132,7 @@ export interface newResource {
     this._perSecond = data._perSecond
     this.modifier = data.modifier
     this.min = data.min
-    this.max = data.max
+    this._max = data._max
     this._applyModifiers = data._applyModifiers
     this._flipMultipiers = data.flipMultipiers
     this.purchaseCost = data.purchaseCost

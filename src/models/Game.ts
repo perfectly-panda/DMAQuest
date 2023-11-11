@@ -3,6 +3,7 @@ import { useResourceStore } from '../stores/ResourceStore';
 import { useGameStore } from '../stores/GameStore';
 import { useAppStore } from '@/stores/AppStore';
 import { useVillageStore } from '@/stores/VillageStore';
+import { useUpgradeStore } from '@/stores/UpgradeStore';
 
 import StoryFlag from './StoryFlag';
 export default class {
@@ -17,6 +18,7 @@ export default class {
   private _gameStore = useGameStore()
   private _appStore = useAppStore()
   private _villageStore = useVillageStore()
+  private _upgradeStore = useUpgradeStore()
 
   temp = false
 
@@ -40,7 +42,7 @@ export default class {
       this._ticksToSave -= ticks
 
       if (this._ticksToSave <= 0) {
-        this._save()
+        this.save()
         this._ticksToSave = this._saveInterval
       }
 
@@ -81,24 +83,13 @@ export default class {
     this._resourceStore.chipmunk.addStatic(wizards * -.01)
   }
 
-  private _save(): void {
-    console.log("saving game...")
-    const save = {
-      resources: this._resourceStore.$state,
-      game: this._gameStore.$state,
-      village: this._villageStore.$state,
-      app: this._appStore.$state,
-    }
-
-    localStorage.setItem('save', JSON.stringify(save))
-  }
-
   private _load(): void {
     console.log("loading game...")
     const save = localStorage.getItem('save')
     if (save) {
       const saveData = JSON.parse(save)
       this._resourceStore.loadSaveData(saveData.resources)
+      this._upgradeStore.loadSaveData(saveData.upgrades)
       this._gameStore.$patch(saveData.game)
       this._villageStore.$patch(saveData.village)
       this._appStore.loadSaveData(saveData.app)
@@ -133,14 +124,28 @@ export default class {
     }
   }
 
+  save(): void {
+    console.log("saving game...")
+    const save = {
+      resources: this._resourceStore.$state,
+      game: this._gameStore.$state,
+      village: this._villageStore.$state,
+      app: this._appStore.$state,
+      upgrades: this._upgradeStore.$state,
+    }
+
+    localStorage.setItem('save', JSON.stringify(save))
+  }
+
   reset(): void {
     this.stop()
+    localStorage.removeItem('save')
     this._resourceStore.$reset()
-    console.log(this._resourceStore.chairs.displayCount)
+    this._upgradeStore.$reset()
     this._gameStore.$reset()
     this._villageStore.$reset()
     this._appStore.$reset()
-    this._save()
+    this.save()
     this.start()
   }
 
