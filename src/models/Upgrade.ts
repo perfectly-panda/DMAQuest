@@ -7,7 +7,7 @@ export interface newUpgrade {
   description: string,
   available?: boolean,
   upgradeCost: number,
-  costMultiplier?:number
+  costMultiplier?: number
   resultType?: UpgradeType,
   resultValue?: number,
   purchased?: number,
@@ -22,7 +22,7 @@ export class Upgrade {
   description: string
   available: boolean
   upgradeCost: number
-  costMultiplier:number
+  costMultiplier: number
   resultType: UpgradeType
   resultValue: number
   purchased: number
@@ -30,7 +30,7 @@ export class Upgrade {
   costResource: IStoryFlag
   impactedResource: IStoryFlag
   purchaseFunction: Function
-  
+
   constructor({
     id,
     name,
@@ -44,8 +44,8 @@ export class Upgrade {
     max = 1,
     costResource,
     impactedResource,
-    purchaseFunction = () => {}
-  } : newUpgrade) {
+    purchaseFunction = () => { }
+  }: newUpgrade) {
     this.id = id
     this.name = name
     this.description = description
@@ -59,20 +59,5 @@ export class Upgrade {
     this.costResource = costResource
     this.impactedResource = impactedResource
     this.purchaseFunction = purchaseFunction
-  }
-
-  load(data: any): void {
-    console.log("load upgrade", data, data.available)
-    this.id = data.id
-    this.name = data.name
-    this.description = data.description
-    this.available = data.availabile
-    console.log("load upgrade after", data.available)
-    this.costMultiplier = data.costMultiplier
-    this.resultType = data.resultType
-    this.resultValue = data.resultValue
-    this.purchased = data.purchased
-    this.max = data.max
-    this.costResource = data.costResource
   }
 }

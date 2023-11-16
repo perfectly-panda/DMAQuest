@@ -175,7 +175,6 @@ export default class {
     console.log(this._upgradeStore.$state)
 
     localStorage.setItem('save', JSON.stringify(save))
-    console.log("game saved")
   }
 
   reset(): void {

@@ -1,6 +1,6 @@
-import { Upgrade } from "@/models/Upgrade";
-import { defineStore } from "pinia";
-import { useResourceStore } from "./ResourceStore";
+import { Upgrade } from "@/models/Upgrade"
+import { defineStore } from "pinia"
+import { useResourceStore } from "./ResourceStore"
 
 export const useUpgradeStore = defineStore('upgrades', {
   state: () => ({
@@ -64,10 +64,7 @@ export const useUpgradeStore = defineStore('upgrades', {
     },
     loadSaveData(data: any) {
       if (data) {
-        for (const upgradeKey of Object.keys(data)) {
-          // @ts-ignore
-          this[upgradeKey].load(data[upgradeKey])
-        }
+        this.$patch(data)
       }
     }
   }
