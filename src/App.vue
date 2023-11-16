@@ -7,6 +7,7 @@
   <div class="main">
     <TitleBar />
     <Story v-if="gameStore.tabs.currentTab === 'Story'"/>
+    <Store v-if="gameStore.tabs.currentTab === 'Store'"/>
     <Phone v-if="gameStore.tabs.currentTab === 'Phone'" :game="game"/>
     <Village v-if="gameStore.tabs.currentTab === 'Village'"/>
 
@@ -23,6 +24,7 @@ import Game from "./models/Game";
 import { useGameStore } from './stores/GameStore';
 
 import Story from './components/story/Story.vue'
+import Store from "./components/store/Store.vue"
 import DevConsole from './components/DevConsole.vue'
 import Phone from './components/phone/Phone.vue'
 import Village from './components/village/Village.vue'

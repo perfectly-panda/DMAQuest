@@ -1,5 +1,5 @@
 <template>
-  <div v-for="resource in resourceStore.visibleResources" :key="resource.id">
+  <div v-for="resource in resourceStore.visibleResources()" :key="resource.id">
     <p><b>{{resource.name}}:</b></p>
     <ul>
       <li>{{resource.displayCount}} / {{resource.max}}</li>

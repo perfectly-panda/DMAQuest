@@ -16,18 +16,25 @@ export const useResourceStore = defineStore('resources', {
     crypto: new Resource({id:'crypto', name:'Crypto', description:'Much rich. So wow.'}),
     memory: new Resource({id:'memory', name:'Memory', description:'How much memory does your phone have?', startingValue: .5, max: 1}),
     gold: new Resource({id:'gold', name:'Gold Coins', description:'Durable, but heavy.'}),
-    cardboard: new Resource({id:'cardboard', name:'Cardboard', description:'Cardboard boxes'}),
+    cardboard: new Resource({id:'cardboard', name:'Cardboard', description:'Cardboard boxes', tab: "Phone"}),
+    snacks: new Resource({id:'snacks', name:'Snacks', description:'Nomnomnom', tab: "Phone"}),
   }),
   getters: {
     resources(state): Array<Resource> {
       return Object.values(state).filter((f) => f instanceof Resource)
     },
-    visibleResources(state): Array<Resource> {   
+    visibleResources: (state) => (tab: string = undefined): Array<Resource> => {  
+      if(tab) {
+        return Object.values(state).filter((f) => f instanceof Resource && f.visible && f.tab === tab)
+      }
       return Object.values(state).filter((f) => f instanceof Resource && f.visible)
     },
     getResourceByName: (state) => (name: string): Resource | undefined => {
       return Object.values(state).find((f) => f instanceof Resource && f.name === name)
     },
+    getResourceById: (state) => (id: string): Resource | undefined => {
+      return Object.values(state).find((f) => f instanceof Resource && f.id === id)
+    }
   },
   actions: {
     loadSaveData(data: any) {

@@ -13,7 +13,9 @@ export const useGameStore = defineStore('game', {
     flags: {
       globals: Array<string>(),
       story: Array<StoryFlag>(),
+      storeOpen: false
     }
+
   }),
   getters: {
     getStoryFlags: (state) : Array<IStoryFlag> => {

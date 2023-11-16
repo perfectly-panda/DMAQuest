@@ -53,9 +53,7 @@
 <script setup lang="ts">
   import { useResourceStore } from '@/stores/ResourceStore'
   import { useGameStore } from '@/stores/GameStore'
-
   import Flag from '@/models/StoryFlag'
-
   import Button from '@/components/Button.vue'
 
   const resourceStore = useResourceStore()

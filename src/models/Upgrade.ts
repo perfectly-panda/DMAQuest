@@ -1,6 +1,6 @@
 import type { IStoryFlag } from "@/types/IStore"
 
-export type UpgradeType = "percentPerSecond" | "flatPerSecond" | "percentMax" | "flatMax" | "flatValue" | "unlock"
+export type UpgradeType = "percentPerSecond" | "flatPerSecond" | "percentMax" | "flatMax" | "flatValue" | "unlock" | "special"
 export interface newUpgrade {
   id: string,
   name: string,
@@ -14,6 +14,7 @@ export interface newUpgrade {
   max?: number,
   costResource: IStoryFlag,
   impactedResource: IStoryFlag,
+  purchaseFunction?: Function
 }
 export class Upgrade {
   id: string
@@ -28,6 +29,7 @@ export class Upgrade {
   max: number
   costResource: IStoryFlag
   impactedResource: IStoryFlag
+  purchaseFunction: Function
   
   constructor({
     id,
@@ -42,6 +44,7 @@ export class Upgrade {
     max = 1,
     costResource,
     impactedResource,
+    purchaseFunction = () => {}
   } : newUpgrade) {
     this.id = id
     this.name = name
@@ -55,13 +58,16 @@ export class Upgrade {
     this.max = max
     this.costResource = costResource
     this.impactedResource = impactedResource
+    this.purchaseFunction = purchaseFunction
   }
 
   load(data: any): void {
+    console.log("load upgrade", data, data.available)
     this.id = data.id
     this.name = data.name
     this.description = data.description
     this.available = data.availabile
+    console.log("load upgrade after", data.available)
     this.costMultiplier = data.costMultiplier
     this.resultType = data.resultType
     this.resultValue = data.resultValue

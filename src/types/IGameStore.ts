@@ -8,6 +8,8 @@ export type IGameStore = {
   flags: {
     globals: Array<string>,
     story: Array<StoryFlag>,
+    storeOpen: boolean
+    allowAutoShip: boolean
   }
 }
 

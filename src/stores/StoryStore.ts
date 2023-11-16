@@ -24,7 +24,9 @@ export const useStoryStore = defineStore('story', {
     crypto: new StoryText(["I have ", " crypto now.", "Crypto:" ]),
     memory: new StoryText(["I have ", " GB of memory available.", "Memory:" ]),
     gold: new StoryText([]),
-    cardboard: new StoryText(["I've collected ", " cardboard boxes now.", "Cardboard:" ]),
+    cardboard: new StoryText(["I've collected ", " cardboard boxes to set up a little store for the other people in line.", "Cardboard:" ]),
+    snacks: new StoryText(["I've got ", " snacks to eat or sell.", "Snacks:" ]),
+    hunger: new StoryText(["I'm starting to get hungry. I wonder if I can find some food around here... (", "% hunger)", "Hunger:" ]),
   }),
   getters: {
   },

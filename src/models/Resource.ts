@@ -1,5 +1,5 @@
 import type { Upgrade } from "./Upgrade"
-import type { iStoryFlag } from "./StoryFlag"
+import type iStoryFlag from "./StoryFlag"
 import { useUpgradeStore } from '../stores/UpgradeStore';
 
 export interface newResource {
@@ -8,51 +8,60 @@ export interface newResource {
   description?: string, 
   perSecond?: number,
   startingValue?: number,
-  applyModifiers?: boolean,
   flipMultipiers?: boolean,
   max?: number,
   min?: number,
   visible?: boolean,
+  tab: string,
+  purchaseCost?: number,
+  purchaseResource: string,
 }
 
   export class Resource {
   readonly id: iStoryFlag
   readonly name: string
   readonly description: string
+  readonly tab: string
+  readonly purchaseResource: string
+  readonly purchaseCost: number
 
   private _count = 0
   private _perSecond = 0
-  private _applyModifiers = true
   private _flipMultipiers = false
   private _upgradeStore = useUpgradeStore()
   private _max = 100
 
   min = 0
   modifier = 1
-  purchaseCost = 1
   visible = false
+  salesPerSecond = 0
+  autoship = false
 
   constructor({id, 
     name = 'intro', 
     description = '', 
     perSecond = 0,
     startingValue = 0,
-    applyModifiers = true,
     max = 100,
     min = 0,
     visible = false,
     flipMultipiers = false,
+    tab = "Story",
+    purchaseCost = 1,
+    purchaseResource = 'cash',
   } : newResource) {
     this.id = id
     this.name = name
     this.description = description
     this._perSecond = perSecond
     this._count = startingValue
-    this._applyModifiers = applyModifiers
     this._flipMultipiers = flipMultipiers
     this._max = max
     this.min = min
     this.visible = visible
+    this.tab = tab
+    this.purchaseCost = purchaseCost
+    this.purchaseResource = purchaseResource
   }
 
   get count() {
@@ -90,7 +99,11 @@ export interface newResource {
   }
 
   get displayPerSecond(): string {
-    return this.perSecond.toFixed(2)
+    let perSecond = this.perSecond
+    if(this.salesPerSecond > 0) {
+      perSecond -= this.salesPerSecond
+    }
+    return perSecond.toFixed(2)
   }
 
   get max(): number {
