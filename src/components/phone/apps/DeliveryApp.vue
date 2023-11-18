@@ -39,7 +39,7 @@ const upgradeStore = useUpgradeStore()
 const resourceStore = useResourceStore()
 
 function purchaseResource(resource: Resource, amount: number){
-  const purchaseResource = resourceStore.getResourceById(resource.purchaseResource)
+  const purchaseResource = resourceStore[resource.purchaseResource]
   if (purchaseResource && purchaseResource.count >= resource.purchaseCost * amount) {
     resource.addStatic(amount)
     purchaseResource.addStatic(-resource.purchaseCost * amount)

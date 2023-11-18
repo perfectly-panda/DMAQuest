@@ -37,7 +37,6 @@ export const useUpgradeStore = defineStore('upgrades', {
   },
   actions: {
     purchaseUpgrade(id: string) {
-      console.log("purchaseUpgrade", id)
       const upgrade = this.getUpdadeById(id)
       if (upgrade && upgrade.available) {
         const resourceStore = useResourceStore()
@@ -45,7 +44,6 @@ export const useUpgradeStore = defineStore('upgrades', {
         if(resource && resource.count > upgrade.upgradeCost) {
           resource.addStatic(-upgrade.upgradeCost)
           upgrade.purchased += 1
-          console.log("upgrade.purchased", upgrade.purchased)
           if (upgrade.purchased >= upgrade.max) {
             upgrade.available = false
           }

@@ -23,7 +23,7 @@ export const useResourceStore = defineStore('resources', {
     resources(state): Array<Resource> {
       return Object.values(state).filter((f) => f instanceof Resource)
     },
-    visibleResources: (state) => (tab: string = undefined): Array<Resource> => {  
+    visibleResources: (state) => (tab: string| undefined): Array<Resource> => {  
       if(tab) {
         return Object.values(state).filter((f) => f instanceof Resource && f.visible && f.tab === tab)
       }

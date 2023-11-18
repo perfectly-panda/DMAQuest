@@ -172,8 +172,6 @@ export default class {
       storeOpen: this._gameStore.flags.storeOpen
     }
 
-    console.log(this._upgradeStore.$state)
-
     localStorage.setItem('save', JSON.stringify(save))
   }
 

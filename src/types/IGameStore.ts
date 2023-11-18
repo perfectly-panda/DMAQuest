@@ -9,7 +9,6 @@ export type IGameStore = {
     globals: Array<string>,
     story: Array<StoryFlag>,
     storeOpen: boolean
-    allowAutoShip: boolean
   }
 }
 

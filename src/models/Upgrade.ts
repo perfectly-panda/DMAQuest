@@ -1,6 +1,13 @@
 import type { IStoryFlag } from "@/types/IStore"
 
-export type UpgradeType = "percentPerSecond" | "flatPerSecond" | "percentMax" | "flatMax" | "flatValue" | "unlock" | "special"
+export type UpgradeType = "percentPerSecond" | 
+  "flatPerSecond" | 
+  "percentMax" | 
+  "flatMax" | 
+  "flatValue" | 
+  "unlock" | 
+  "special"
+  
 export interface newUpgrade {
   id: string,
   name: string,

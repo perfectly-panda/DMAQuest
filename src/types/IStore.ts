@@ -16,7 +16,7 @@ type IStore<T> = {
   gold: T,
   cardboard: T,
   snacks: T,
-  hunger: T,
+ // hunger: T,
 }
 
 export type IResourceStore = IStore<Resource>

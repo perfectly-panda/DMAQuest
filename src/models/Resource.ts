@@ -1,9 +1,9 @@
 import type { Upgrade } from "./Upgrade"
-import type iStoryFlag from "./StoryFlag"
+import type {IStoryFlag} from '../types/IStore'
 import { useUpgradeStore } from '../stores/UpgradeStore';
 
 export interface newResource {
-  id: iStoryFlag, 
+  id: string, 
   name?: string, 
   description?: string, 
   perSecond?: number,
@@ -12,18 +12,17 @@ export interface newResource {
   max?: number,
   min?: number,
   visible?: boolean,
-  tab: string,
+  tab?: string,
   purchaseCost?: number,
-  purchaseResource: string,
+  purchaseResource?: IStoryFlag,
 }
 
   export class Resource {
-  readonly id: iStoryFlag
+  readonly id: string
   readonly name: string
   readonly description: string
   readonly tab: string
-  readonly purchaseResource: string
-  readonly purchaseCost: number
+  readonly purchaseResource: IStoryFlag
 
   private _count = 0
   private _perSecond = 0
@@ -36,6 +35,7 @@ export interface newResource {
   visible = false
   salesPerSecond = 0
   autoship = false
+  purchaseCost: number
 
   constructor({id, 
     name = 'intro', 
@@ -146,7 +146,6 @@ export interface newResource {
     this.modifier = data.modifier
     this.min = data.min
     this._max = data._max
-    this._applyModifiers = data._applyModifiers
     this._flipMultipiers = data.flipMultipiers
     this.purchaseCost = data.purchaseCost
     this.visible = data.visible
